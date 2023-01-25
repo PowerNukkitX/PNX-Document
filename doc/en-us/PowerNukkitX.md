@@ -40,7 +40,7 @@ As the main force of the Nukkit ecology, we need to take over the task of the Nu
 - New nether
 - Epic Terrain Generator (Terra)
 - Fix many bugs
-- Custom items, blocks and ui（WIP）
+- Custom items, blocks, recipes, entities, worlds, UI, etc
 - Open source, many plugins
 - Higher performance, multi-core optimization
 
