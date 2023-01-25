@@ -1,0 +1,47 @@
+{
+  "PowerNukkitX": "PowerNukkitX.html",
+  "快速入门": "Get_Started.html",
+  "服务器配置": {
+    "server.properties": "config/server.properties.html",
+    "nukkit.yml": "config/nukkit.yml.html",
+    "反矿透": "config/anti-xray.html",
+    "资源包加密": "config/resource-encryption.html",
+    "硬件加速压缩": "config/compression-acceleration.html",
+    "使用WaterDogPE": "config/waterdog.html"
+  },
+  "FAQ": {
+    "新人必看": "faq/to_newcomers.html",
+    "PNX-CLI教程": "faq/PNX-CLI.html",
+    "常见问题": "faq/common.html",
+    "Terra问题": "faq/terra.html",
+    "重生点问题": "faq/spawn-point.html"
+  },
+  "开发者文档": {
+    "Java": {
+      "跳转到JavaDoc": "dev/java/javadoc.html",
+      "自定义": {
+        "迁移到新自定义API": "dev/java/custom/new_custom_API.html"
+      },
+      "生物AI": {
+        "行为": "dev/java/entity-ai/behavior.html",
+        "记忆": "dev/java/entity-ai/memory.html",
+        "传感器": "dev/java/entity-ai/sensor.html",
+        "运动控制器": "dev/java/entity-ai/motion_controller.html",
+        "寻路器": "dev/java/entity-ai/navigator.html",
+        "行为组": "dev/java/entity-ai/behavior_group.html",
+        "工作周期": "dev/java/entity-ai/work_cycle.html"
+      }
+    },
+    "JavaScript": {
+      "配置开发环境": "dev/js/setup_dev_env.html",
+      "Hello World": "dev/js/hello_world.html",
+      "基本知识": "dev/js/basic_knowledge.html",
+      "事件监听": "dev/js/event_listener.html",
+      "常见开发问题": "dev/js/dev_faq.html"
+    },
+    "实用资源": {
+      "事件对照表": "dev/res/event_list.html",
+      "物品方块ID": "dev/res/IDs.html"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "PowerNukkitX": "PowerNukkitX.html",
+  "Get Started": "Get_Started.html",
+  "Config": {
+    "server.properties": "config/server.properties.html",
+    "nukkit.yml": "config/nukkit.yml.html",
+    "Anti-xray": "config/anti-xray.html",
+    "Resource Encryption": "config/resource-encryption.html",
+    "Compression Acceleration": "config/compression-acceleration.html",
+    "PNX with WaterDogPE": "config/waterdog.html"
+  },
+  "FAQ": {
+    "To Newcomers": "faq/to_newcomers.html",
+    "How to use PNX-CLI": "faq/PNX-CLI.html",
+    "Common Questions": "faq/common.html",
+    "Terra Questions": "faq/terra.html",
+    "Spawn-point Questions": "faq/spawn-point.html"
+  },
+  "For Devs": {
+    "Java": {
+      "Goto JavaDoc": "dev/java/javadoc.html",
+      "Custom": {
+        "Migrate to New Custom API": "dev/java/custom/new_custom_API.html"
+      },
+      "Entity AI": {
+        "Behavior": "dev/java/entity-ai/behavior.html",
+        "Memory": "dev/java/entity-ai/memory.html",
+        "Sensor": "dev/java/entity-ai/sensor.html",
+        "Motion Controller": "dev/java/entity-ai/motion_controller.html",
+        "Navigator": "dev/java/entity-ai/navigator.html",
+        "Behavior Group": "dev/java/entity-ai/behavior_group.html",
+        "Work Cycle": "dev/java/entity-ai/work_cycle.html"
+      }
+    },
+    "Resources": {
+      "Event List": "dev/res/event_list.html",
+      "IDs(block & item)": "dev/res/IDs.html"
+    }
+  }
+}
