@@ -7,7 +7,8 @@
     "反矿透": "config/anti-xray.html",
     "资源包加密": "config/resource-encryption.html",
     "硬件加速压缩": "config/compression-acceleration.html",
-    "使用WaterDogPE": "config/waterdog.html"
+    "使用WaterDogPE": "config/waterdog.html",
+    "转换地图": "config/convert_world.html"
   },
   "FAQ": {
     "新人必看": "faq/to_newcomers.html",

@@ -7,7 +7,8 @@
     "Anti-xray": "config/anti-xray.html",
     "Resource Encryption": "config/resource-encryption.html",
     "Compression Acceleration": "config/compression-acceleration.html",
-    "PNX with WaterDogPE": "config/waterdog.html"
+    "PNX with WaterDogPE": "config/waterdog.html",
+    "Convert Worlds": "config/convert_world.html"
   },
   "FAQ": {
     "To Newcomers": "faq/to_newcomers.html",
