@@ -7,15 +7,15 @@
     "反矿透": "config/anti-xray.html",
     "资源包加密": "config/resource-encryption.html",
     "硬件加速压缩": "config/compression-acceleration.html",
-    "使用WaterDogPE": "config/waterdog.html",
-    "转换地图": "config/convert_world.html"
+    "使用WaterDogPE": "config/waterdog.html"
   },
   "FAQ": {
     "新人必看": "faq/to_newcomers.html",
     "PNX-CLI教程": "faq/PNX-CLI.html",
     "常见问题": "faq/common.html",
     "Terra问题": "faq/terra.html",
-    "重生点问题": "faq/spawn-point.html"
+    "重生点问题": "faq/spawn-point.html",
+    "转换地图": "config/convert_world.html"
   },
   "开发者文档": {
     "Java": {
