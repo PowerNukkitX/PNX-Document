@@ -15,7 +15,7 @@
     "Common Questions": "faq/common.html",
     "Terra Questions": "faq/terra.html",
     "Spawn-point Questions": "faq/spawn-point.html",
-    "Convert Worlds": "config/convert_world.html"
+    "Convert Worlds": "faq/convert_world.html"
   },
   "For Devs": {
     "Java": {

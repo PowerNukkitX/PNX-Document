@@ -15,7 +15,7 @@
     "常见问题": "faq/common.html",
     "Terra问题": "faq/terra.html",
     "重生点问题": "faq/spawn-point.html",
-    "转换地图": "config/convert_world.html"
+    "转换地图": "faq/convert_world.html"
   },
   "开发者文档": {
     "Java": {
