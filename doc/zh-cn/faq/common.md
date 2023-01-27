@@ -61,12 +61,22 @@ netstat -tln | grep 19132
 kill -9 进程PID
 ```
 
-## java.lang.NoClassDefFoundError: org/objectweb/asm/Type
+## java.lang.NoClassDefFoundError
 如果使用的是pnx-cli,请使用以下命令更新依赖库
 ```
 pnx libs update
 ```
 如果使用的是shaded版本核心,请在action中下载更新最新核心.
+
+## java.lang.RuntimeException  
+
+如果报错内容中带有  
+```
+java.io.IOException: Unable to acquire lock on '......players/LOCK'
+```
+
+说明你在同一个路径上同时开启了不少于两个相同的PNX程序，请关闭先前启动的那个。  
+如果您甚至不知道如何进行上述操作，请重启您的服务器来解决此问题并系统学习如何正确使用您的操作系统。  
 
 ## 玩家集体掉线  
 

@@ -40,7 +40,7 @@ Find the corresponding UDP number for port 12228 and enter the following command
 ```
 taskkill /f /t /im 12228
 ```
-#### Linux solution
+#### Linux solution  
 Enter the following command in the command box
 ```
 netstat -tln | grep 19132
@@ -50,14 +50,26 @@ Check the corresponding system PID number to end the process using the following
 kill -9 PID
 ```
 
-## java.lang.NoClassDefFoundError: org/objectweb/asm/Type
+## java.lang.NoClassDefFoundError: org/objectweb/asm/Type  
 If you are using pnx-cli,please use the following command to update dependent libraries.
 ```
 pnx libs update
 ```
 If you are using shaded core,please download the latest core in [github action](https://github.com/PowerNukkitX/PowerNukkitX/actions).
 
-## All players are offline at the same time
+## java.lang.RuntimeException
+
+If the error log contains the following content:    
+```
+java.io.IOException: Unable to acquire lock on '......players/LOCK'
+```
+
+It means that you have opened at least two identical PNX programs on the same path at the same time. 
+Please close the one you started earlier.  
+If you don't even know how to close a program, please restart your server
+to solve the problem and learn how to use your operating system correctly.
+
+## All players are offline at the same time  
 
 This may be caused by the following reasons:  
 
