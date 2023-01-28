@@ -4,6 +4,7 @@
   "Config": {
     "server.properties": "config/server.properties.html",
     "nukkit.yml": "config/nukkit.yml.html",
+    "pnx-cli-config.ini": "config/pnx-cli-config.ini.html",
     "Anti-xray": "config/anti-xray.html",
     "Resource Encryption": "config/resource-encryption.html",
     "Compression Acceleration": "config/compression-acceleration.html",

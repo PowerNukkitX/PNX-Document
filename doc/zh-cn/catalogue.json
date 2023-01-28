@@ -4,6 +4,7 @@
   "服务器配置": {
     "server.properties": "config/server.properties.html",
     "nukkit.yml": "config/nukkit.yml.html",
+    "pnx-cli-config.ini": "config/pnx-cli-config.ini.html",
     "反矿透": "config/anti-xray.html",
     "资源包加密": "config/resource-encryption.html",
     "硬件加速压缩": "config/compression-acceleration.html",
