@@ -80,4 +80,22 @@ This may be caused by the following reasons:
 - Your server performance is poor, and other high occupancy programs are opened at the same time. The system suspends the operation of PNX to ensure the operation of other foreground programs
 - Your server or service provider has been attacked by network, such as DDOS
 
-Please check the above reasons first. If you really can't solve it, you can turn to QQ group or Discord server for help.  
+Please check the above reasons first. If you really can't solve it, you can turn to QQ group or Discord server for help.
+
+## DOS error/errno=1455
+
+> The page file is too small to complete the operation 
+> DOS error/errno=1455
+
+This happens when the JVM asks the operating system for memory, and the operating system cannot give more memory.  
+When PNX starts, the available memory configured by default will be slightly less than the maximum available physical memory space at that time. 
+If it is exceeded, GC will be performed and JVM internal error will be thrown instead of applying for more memory from the operating system.
+This happens only when the maximum available physical memory space data that PNX calculates does not match the actual memory size.
+If the machine memory is too small, or some core displays with too much reserved space (usually with laptops) are used, the proportion of hardware reserved memory is too large to cause this problem.
+This problem can also be caused by over-opened virtual machines.
+
+You can try to solve this problem in the following ways:  
+
+- Configure PNX to use less memory
+- Increase virtual memory size of the operating system (which may severely degrade performance)
+- Expand the size of the physical memory
