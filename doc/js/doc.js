@@ -41,7 +41,7 @@ function createCssEle(id, link) {
 }
 
 function checkLanguage() {
-    let languageId = (window.localStorage.getItem("userLanguage") || window.language || navigator.language || navigator.browserLanguage).toLowerCase();
+    let languageId = (window.localStorage.getItem("userLanguage") || document.body.parentElement.lang || navigator.language || navigator.browserLanguage).toLowerCase();
     const currentLanguageId = document.documentElement.lang;
     if (currentLanguageId !== languageId) {
         let tipMessage;
