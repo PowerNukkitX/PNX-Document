@@ -48,7 +48,7 @@ _**author: Cool_Loong**_
 `CustomBlockDefinition.builder()`一共有四种重载方法，其中第一个参数都是自定义方块的实例，填写`this`即可
 
 重载1 `builder(CustomBlock customBlock, String texture)`
-参数texture是自定义方块的材质路径，需要根据资源包中`textures\item_texture.json`相应的材质定义来填写  
+参数texture是自定义方块的材质路径，需要根据资源包中`textures\terrain_texture.json`相应的材质定义来填写  
 如果你不知道`item_texture.json`是什么，请查阅上方提供的两个网站。
 
 重载2 `builder(CustomBlock customBlock, String texture, BlockCreativeCategory blockCreativeCategory)`  
