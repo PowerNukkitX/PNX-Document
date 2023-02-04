@@ -21,8 +21,11 @@
   "For Devs": {
     "Java": {
       "Goto JavaDoc": "dev/java/javadoc.html",
-      "Custom": {
-        "Migrate to New Custom API": "dev/java/custom/new_custom_API.html"
+      "Mod API": {
+        "Custom Block": "dev/java/custom/custom_block.html",
+        "Custom Item": "dev/java/custom/custom_entity.html",
+        "Custom Entity": "dev/java/custom/custom_item.html",
+        "Custom Enchantment": "dev/java/custom/custom_ench.html"
       },
       "Entity AI": {
         "Behavior": "dev/java/entity-ai/behavior.html",
