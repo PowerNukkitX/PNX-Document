@@ -1,4 +1,4 @@
-## 2.自定义实体相关API
+## 3.自定义实体相关API
 _**author: Cool_Loong**_  
 自定义物品相关的API统一在包`cn.nukkit.entity.custom`下  
 实现自定义物品需要实现CustomEntity接口。

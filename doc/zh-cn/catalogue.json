@@ -23,8 +23,8 @@
       "跳转到JavaDoc": "dev/java/javadoc.html",
       "Mod API": {
         "自定义方块": "dev/java/custom/custom_block.html",
-        "自定义物品": "dev/java/custom/custom_entity.html",
-        "自定义实体": "dev/java/custom/custom_item.html",
+        "自定义物品": "dev/java/custom/custom_item.html",
+        "自定义实体": "dev/java/custom/custom_entity.html",
         "自定义附魔": "dev/java/custom/custom_ench.html"
       },
       "生物AI": {
