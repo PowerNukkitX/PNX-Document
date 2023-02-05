@@ -128,7 +128,7 @@
           "args": {
             // 每个文件的路径上符合正则表达式的部分将被替换为languages数组中的内容，然后进行排列组合
             // The part of the path of each file that matches the regular expression will be replaced with the content of the languages array, and then the permutation combination will be performed.
-            "regexp": "([a-z]{2}-[a-z]{2})(?=[/\\\\])",
+            "regexp": "(?<=[/\\\\])([a-z]{2}-[a-z]{2})(?=[/\\\\])",
             // 最终信息将被收集为multi-language-links变量以供模板调用
             // The final information will be collected as the multi-language-links variable for template calls
             "languages": [
