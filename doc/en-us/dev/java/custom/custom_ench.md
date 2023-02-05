@@ -1,6 +1,7 @@
-## 4.自定义附魔
+# 4.自定义附魔  
+
 _**author: Cool_Loong**_  
-### 实现自定义附魔
+## 实现自定义附魔
 实现自定义附魔首先需要继承Enchantment，并且选择使用该构造函数  
 `protected Enchantment(@NotNull Identifier identifier, String name, Rarity rarity, @NotNull EnchantmentType type)`
 其中Identifier是该附魔的标识符，形如`pnx:test`,保留`minecraft`命名空间不允许使用，不能与其他插件相同   
@@ -12,7 +13,7 @@ EnchantmentType为该附魔的类型，不同类型允许附魔的物品不同
 通过使用`Item#getCustomEnchantment(String id)`来获取该物品指定的自定义附魔  
 通过使用`Item#getCustomEnchantmentLevel(String id)`来获取该物品指定的自定义附魔等级  
 
-### 实现自定义附魔逻辑
+## 实现自定义附魔逻辑
 核心只提供自定义附魔的注册，关于自定义附魔的逻辑需要插件作者自己实现。  
 你可以通过覆写附魔中的部分方法实现特定过程中的逻辑  
 例如:  
@@ -21,5 +22,5 @@ EnchantmentType为该附魔的类型，不同类型允许附魔的物品不同
 你还可以通过监听事件实现自己想要的附魔逻辑
 更多详情见javadoc
 
-### 注册自定义附魔
+## 注册自定义附魔
 使用`Enchantment#register`注册自定义附魔

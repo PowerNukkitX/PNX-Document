@@ -1,9 +1,10 @@
-## 2.自定义物品相关API
+# 2.自定义物品相关API  
+
 _**author: Cool_Loong**_  
 自定义物品相关的API统一在包`cn.nukkit.item.customitem`下  
 实现自定义物品需要实现CustomItem接口，也可以通过选择继承内部已经实现好接口的一些基础自定义物品类来实现。
 
-### 基础自定义物品
+## 基础自定义物品
 通过继承`ItemCustom`类可以实现一个普通的自定义物品，必须要覆写`getDefinition`方法,创建一个无参构造函数，调用父类构造函数传入:  
 `String id`  
 id是自定义物品的标识符，必须填写，形如`pnx:test`
@@ -23,7 +24,7 @@ public class Test extends ItemCustom {
     }
 }
 ```
-### 基础自定义工具
+## 基础自定义工具
 通过继承`ItemCustomTool`类可以实现一个普通的自定义工具，实现方式和上面类似。注意`CustomItemDefinition`需要使用`toolBuilder`，因为有特殊的接口。  
 
 示例：
@@ -57,7 +58,7 @@ public class MySword extends ItemCustomTool {
     }
 }
 ```
-### 基础自定义盔甲
+## 基础自定义盔甲
 通过继承`ItemCustomArmor`类可以实现一个普通的自定义盔甲。注意`CustomItemDefinition`需要使用`armorBuilder`，因为有特殊的接口。  
 同时，自定义盔甲需要在材质包中指定`Attachables`。  
 示例：
@@ -90,7 +91,7 @@ public class MyArmor extends ItemCustomArmor {
     }
 }
 ```
-### 基础自定义食物
+## 基础自定义食物
 通过继承`ItemCustomEdible`类可以实现一个普通的自定义工具。注意`CustomItemDefinition`需要使用`edibleBuilder`，因为有特殊的接口。
 同时`ItemCustomEdible`还必须实现方法`public abstract Map.Entry<Plugin, Food> getFood();`来定义食物属性，以供服务端注册食物`Food`
 
@@ -108,7 +109,7 @@ public class MyApple extends ItemCustomEdible {
     }
 }
 ```
-### 继承自任意物品类实现自定义物品
+## 继承自任意物品类实现自定义物品
 通过继承自任意物品类实现`CustomItem`可以复用核心内部逻辑，实现某些特殊物品，例如自定义弓。  
 需要注意的是，实现`CustomItem`接口实现自定义物品，必须拥有一个无参构造函数，且按照以下示例定义。同时CustomItemDefinition必须使用`customBuilder`。  
 
@@ -136,4 +137,6 @@ public class MyCustomItem extends Item implements CustomItem {
 }
 ```
 
-#### CustomItemDefinition相关API参见[JavaDoc](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/item/customitem/CustomItemDefinition.html)
+-------------
+
+CustomItemDefinition相关API参见[JavaDoc](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/item/customitem/CustomItemDefinition.html)

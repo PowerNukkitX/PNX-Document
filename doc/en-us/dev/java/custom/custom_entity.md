@@ -1,9 +1,10 @@
-## 3.自定义实体相关API
+# 3.自定义实体相关API  
+
 _**author: Cool_Loong**_  
 自定义物品相关的API统一在包`cn.nukkit.entity.custom`下  
 实现自定义物品需要实现CustomEntity接口。
 
-### 自定义实体示例
+## 自定义实体示例
 自定义实体必须要有一个默认构造函数`Entity(FullChunk chunk, CompoundTag nbt)`,下面提供了一个简单的自定义实体示例
 ```java
 public class MyPig extends Entity implements CustomEntity {
@@ -25,7 +26,7 @@ public class MyPig extends Entity implements CustomEntity {
     }
 }
 ```
-### 注册自定义实体
+## 注册自定义实体
 调用`Entity#registerCustomEntity(CustomEntityProvider customEntityProvider)`注册自定义实体
 
 `CustomClassEntityProvider`是CustomEntityProvider的一个实现，你可以通过两种方式创建:  
@@ -35,7 +36,7 @@ public class MyPig extends Entity implements CustomEntity {
 2.`CustomClassEntityProvider(CustomEntityDefinition customEntityDefinition, Class<? extends Entity> customEntityClass)`  
 要求传入一个自定义实体类和该实体的`CustomEntityDefinition`
 
-### 带有AI的自定义Human实体示例
+## 带有AI的自定义Human实体示例
 该自定义实体借用了PNX AI框架中僵尸的行为组，其行为与僵尸一致，会攻击玩家。
 关于PNX AI框架详见[教程](https://doc.powernukkitx.cn/zh-cn/dev/java/entity-ai/behavior.html)
 ```java
