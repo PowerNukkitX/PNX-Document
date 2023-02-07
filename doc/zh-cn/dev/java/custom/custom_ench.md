@@ -1,6 +1,7 @@
 # 4.自定义附魔  
 
 _**author: Cool_Loong**_  
+
 ## 实现自定义附魔
 实现自定义附魔首先需要继承Enchantment，并且选择使用该构造函数  
 `protected Enchantment(@NotNull Identifier identifier, String name, Rarity rarity, @NotNull EnchantmentType type)`

@@ -1,6 +1,7 @@
 # 2.自定义物品相关API  
 
 _**author: Cool_Loong**_  
+
 自定义物品相关的API统一在包`cn.nukkit.item.customitem`下  
 实现自定义物品需要实现CustomItem接口，也可以通过选择继承内部已经实现好接口的一些基础自定义物品类来实现。
 
