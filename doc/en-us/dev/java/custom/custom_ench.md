@@ -1,26 +1,29 @@
-# 4.自定义附魔  
+# 4. custom enchantment
 
-_**author: Cool_Loong**_  
-## 实现自定义附魔
-实现自定义附魔首先需要继承Enchantment，并且选择使用该构造函数  
+_**author: Cool_Loong***_
+
+## Implementing Custom Enchantment
+To implement a custom enchantment, you first need to `extends` from Enchantment and choose to use this constructor  
 `protected Enchantment(@NotNull Identifier identifier, String name, Rarity rarity, @NotNull EnchantmentType type)`
-其中Identifier是该附魔的标识符，形如`pnx:test`,保留`minecraft`命名空间不允许使用，不能与其他插件相同   
-String为该附魔的显示名  
-Rarity为该附魔的珍稀程度  
-EnchantmentType为该附魔的类型，不同类型允许附魔的物品不同  
-注意，自定义附魔没有数字ID，获取自定义附魔只能通过字符串来获取。  
-通过使用`Item#hasCustomEnchantment(String id)`来判断该物品是否具有指定的自定义附魔  
-通过使用`Item#getCustomEnchantment(String id)`来获取该物品指定的自定义附魔  
-通过使用`Item#getCustomEnchantmentLevel(String id)`来获取该物品指定的自定义附魔等级  
+where Identifier is the identifier of the enchantment, such as `pnx:test`, reserved for the `minecraft` namespace and not allowed to be used with other plugins   
+String is the display name of the enchantment  
+Rarity is the rarity of the enchantment  
+EnchantmentType is the type of the enchantment, different types allow different items to be enchanted  
 
-## 实现自定义附魔逻辑
-核心只提供自定义附魔的注册，关于自定义附魔的逻辑需要插件作者自己实现。  
-你可以通过覆写附魔中的部分方法实现特定过程中的逻辑  
-例如:  
-`doPostAttack`当实体entity穿着附魔盔甲，被实体attacker攻击时触发  
-`doAttack`当实体attacker使用具有附魔的武器攻击实体entity时触发  
-你还可以通过监听事件实现自己想要的附魔逻辑
-更多详情见javadoc
+Note that custom enchantments do not have numeric IDs, and the only way to get custom enchantments is through strings.  
+Use `Item#hasCustomEnchantment(String id)` to determine if the item has the specified custom enchantment  
+Get the item's specified custom enchantment by using `Item#getCustomEnchantment(String id)`.  
+Get the custom enchantment level specified by the item by using `Item#getCustomEnchantmentLevel(String id)`.
 
-## 注册自定义附魔
-使用`Enchantment#register`注册自定义附魔
+## Implementing custom enchantment logic
+The core only provides the registration of custom enchantment, the logic of custom enchantment needs to be implemented by the plugin author.  
+You can implement the logic of a specific process by overriding some of the methods in enchanting  
+For example:  
+`doPostAttack` is triggered when entity is wearing enchanted armor and is attacked by entity attacker  
+`doAttack` is triggered when the entity attacker attacks the entity with an enchanted weapon  
+You can also implement your own enchantment logic by listening for events
+See javadoc for more details
+
+## Registering custom enchantment
+Use `Enchantment#(Enchantment enchantment, boolean registerItem)` to register a custom enchantment
+`registerItem` means whether you also need to register custom enchantment book items

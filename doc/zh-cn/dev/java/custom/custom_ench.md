@@ -24,4 +24,5 @@ EnchantmentType为该附魔的类型，不同类型允许附魔的物品不同
 更多详情见javadoc
 
 ## 注册自定义附魔
-使用`Enchantment#register`注册自定义附魔
+使用`Enchantment#(Enchantment enchantment, boolean registerItem)`注册自定义附魔
+registerItem代表是否同时需要注册自定义附魔书物品
