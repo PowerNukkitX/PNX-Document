@@ -1,8 +1,8 @@
 # 3.自定义实体相关API  
 
 _**author: Cool_Loong**_  
-自定义物品相关的API统一在包`cn.nukkit.entity.custom`下  
-实现自定义物品需要实现CustomEntity接口。
+自定义实体相关的API统一在包`cn.nukkit.entity.custom`下  
+实现自定义实体需要实现CustomEntity接口。
 
 ## 自定义实体示例
 自定义实体必须要有一个默认构造函数`Entity(FullChunk chunk, CompoundTag nbt)`,下面提供了一个简单的自定义实体示例
@@ -40,12 +40,11 @@ public class MyPig extends Entity implements CustomEntity {
 该自定义实体借用了PNX AI框架中僵尸的行为组，其行为与僵尸一致，会攻击玩家。
 关于PNX AI框架详见[教程](https://doc.powernukkitx.cn/zh-cn/dev/java/entity-ai/behavior.html)
 ```java
-public class MyHuman extends EntityIntelligentHuman {
+public class MyHuman extends EntityIntelligentHuman implements CustomEntity {
     public final static CustomEntityDefinition def = CustomEntityDefinition.builder().identifier("powernukkitx:human")
             .summonable(false)
             .spawnEgg(false)
             .build();//实体定义
-
     public MyHuman(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
         Skin skin = new Skin();//Human实体的皮肤定义
@@ -55,8 +54,6 @@ public class MyHuman extends EntityIntelligentHuman {
         this.setSkin(skin);
         this.getInventory().addItem(Item.get(ItemID.DIAMOND_SWORD));
     }
-
-    @Override
     public IBehaviorGroup requireBehaviorGroup() {//实体AI行为组定义
         return new BehaviorGroup(
                 this.tickSpread,
@@ -81,6 +78,9 @@ public class MyHuman extends EntityIntelligentHuman {
                 Set.of(new WalkController(), new LookController(true, true)),
                 new SimpleFlatAStarRouteFinder(new WalkingPosEvaluator(), this)
         );
+    }
+    public CustomEntityDefinition getDefinition() {
+        return def;
     }
 }
 ```
