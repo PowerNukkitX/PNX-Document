@@ -37,6 +37,14 @@
         "Work Cycle": "dev/java/entity-ai/work_cycle.html"
       }
     },
+    "JavaScript": {
+      "setup dev env": "dev/js/setup_dev_env.html",
+      "Base LLSELib dev": "dev/js/setup_llse_dev_env.html",
+      "Hello World": "dev/js/hello_world.html",
+      "Basic knowledge": "dev/js/basic_knowledge.html",
+      "Event Listener": "dev/js/event_listener.html",
+      "FAQ": "dev/js/dev_faq.html"
+    },
     "Resources": {
       "Event List": "dev/res/event_list.html",
       "IDs(block & item)": "dev/res/IDs.html"
