@@ -46,6 +46,10 @@
       "事件监听": "dev/js/event_listener.html",
       "常见开发问题": "dev/js/dev_faq.html"
     },
+    "API": {
+      "简介": "dev/api/introduction.html",
+      "通用API": "dev/api/common.html"
+    },
     "实用资源": {
       "事件对照表": "dev/res/event_list.html",
       "物品方块ID": "dev/res/IDs.html"
