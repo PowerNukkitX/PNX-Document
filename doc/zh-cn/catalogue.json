@@ -39,6 +39,7 @@
     },
     "JavaScript": {
       "配置开发环境": "dev/js/setup_dev_env.html",
+      "基于LLSELib开发": "dev/js/setup_llse_dev_env.html",
       "Hello World": "dev/js/hello_world.html",
       "基本知识": "dev/js/basic_knowledge.html",
       "事件监听": "dev/js/event_listener.html",
