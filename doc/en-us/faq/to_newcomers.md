@@ -57,7 +57,7 @@ No, PNX does not support addons. On the contrary, PNX provides Java plugin and J
 The default generator of PNX is a high-performance terrain generator imitating 1.14, which is different from the original terrain.  
 
 Therefore, PNX also provides other generators：  
-- [Terragenerator ](TerraQuestion HTML), which can generate an epic world, and is suitable for servers such as architectural clothing and survival clothing.  
+- [Terragenerator ](terra.html), which can generate an epic world, and is suitable for servers such as architectural clothing and survival clothing.  
 - [Pure original generator](https://github.com/KCodeYT/VanillaGenerator) , which can generate a world completely consistent with the original version of the latest supported version, and the same seed can generate the same original world, which consumes huge server performance.  
 
 ## What is the performance of PNX?  

@@ -31,7 +31,7 @@ the pack into `./terra/packs` and restart your server to install it.
 
 You can view the currently available configuration packages (incomplete) at this site: [Community Packs](https://terra.polydev.org/config/community-packs.html)
 
-Next, let's take [Reimag END](https:github.comjustaureus Reimag END) configuration package as an example, the configuration package file name is "Reimag END.zip"
+Next, let's take [ReimagEND](https://github.com/justaureus/ReimagEND) configuration package as an example, the configuration package file name is "Reimag END.zip"
 
 We want to apply this config package in the end, we need to set the following in nukkit.yml:
 ```yaml
