@@ -15,7 +15,7 @@ The development team or members of the development team may charge you for provi
 
 ## What versions does PNX support?  
 
-Minecraft: Bedrock Edition v1.19.60 (Protocol 567)  
+Minecraft: Bedrock Edition v1.19.62 (Protocol 567)  
 
 ## How about PNX original feature support?  
 
