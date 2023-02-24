@@ -48,7 +48,8 @@
     },
     "API": {
       "简介": "dev/api/introduction.html",
-      "通用API": "dev/api/common.html"
+      "通用API": "dev/api/common.html",
+      "Git-API": "dev/api/git.html"
     },
     "实用资源": {
       "事件对照表": "dev/res/event_list.html",
