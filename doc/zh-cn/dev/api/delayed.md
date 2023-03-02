@@ -7,7 +7,7 @@
 
 url:
 
-- /delayed/{uuid}
+- /delayed/query/{uuid}
 
 参数:
 
