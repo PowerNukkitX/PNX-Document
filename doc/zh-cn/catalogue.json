@@ -49,7 +49,9 @@
     "API": {
       "简介": "dev/api/introduction.html",
       "通用API": "dev/api/common.html",
-      "Git-API": "dev/api/git.html"
+      "Git-API": "dev/api/git.html",
+      "下载API": "dev/api/download.html",
+      "延迟返回API": "dev/api/delayed.html"
     },
     "实用资源": {
       "事件对照表": "dev/res/event_list.html",
