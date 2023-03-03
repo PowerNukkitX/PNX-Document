@@ -9,7 +9,7 @@ url:
 
 参数:
 
-- repo: 仓库名，如`PowerNukkit`或`PNX-CLI`，默认为`PowerNukkit`
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
 
 返回示例:
 
@@ -30,7 +30,7 @@ url:
 
 参数:
 
-- repo: 仓库名，如`PowerNukkit`或`PNX-CLI`，默认为`PowerNukkit`
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
 - status: 问题状态，可选值为`all`、`open`、`closed`，默认为`all`
 
 返回示例:
@@ -50,7 +50,7 @@ url:
 
 参数:
 
-- repo: 仓库名，如`PowerNukkit`或`PNX-CLI`，默认为`PowerNukkit`
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
 
 返回示例:
 
@@ -95,12 +95,12 @@ url:
 
 url:
 
-- /latest-release
-- /latest-release/{repo}
+- /git/latest-release
+- /git/latest-release/{repo}
 
 参数:
 
-- repo: 仓库名，如`PowerNukkit`或`PNX-CLI`，默认为`PowerNukkit`
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
 
 返回示例:
 
@@ -160,11 +160,11 @@ url:
 ## 获取仓库所有发行版信息  
 
 url:
-- /all-releases
-- /all-releases/{repo}
+- /git/all-releases
+- /git/all-releases/{repo}
 
 参数:
-- repo: 仓库名，如`PowerNukkit`或`PNX-CLI`，默认为`PowerNukkit`
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
 
 返回示例:
 ```json5
@@ -590,4 +590,38 @@ url:
     ]
   }
 ]
+```
+
+## 获取仓库的Readme内容  
+
+url:
+
+- /git/readme/{repo}
+
+参数:
+
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
+
+返回示例:
+```json5
+{
+  "format": "Markdown", // 仓库的Readme格式，可能为Markdown，Text，HTML或ReStructuredText
+  "content": "Some markdown contents ......" // 仓库的Readme内容
+}
+```
+
+## 获取仓库的图标  
+
+url:
+- /git/icon/{repo}
+
+参数:
+
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
+
+返回示例:
+```json5
+{
+  "downloadID": 160 // 图标的下载ID，可以通过/download/{id}获取图标
+}
 ```
