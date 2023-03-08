@@ -625,3 +625,19 @@ url:
   "downloadID": 160 // 图标的下载ID，可以通过/download/{id}获取图标
 }
 ```
+
+## 渲染Markdown  
+
+url:
+- POST /markdown
+- POST /markdown/{repo}
+
+参数:
+
+- repo: 仓库名，如`PowerNukkit`或`CloudBurst/Nukkit`，若没有填写仓库拥有者，将自动补充`PowerNukkitX`组织作为拥有者，此项默认为`PowerNukkit/PowerNukkitX`
+- Request Body: Markdown内容
+
+返回示例:
+```text
+<p>Some markdown contents ......</p>
+```

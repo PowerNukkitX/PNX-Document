@@ -22,6 +22,7 @@ url:
 ```json5
 {
   "size": 2,
+  "totalSize": 81,
   "plugins": [
     {
       "id": "Physical-Science-Academy/NoCheatPlus",
@@ -138,6 +139,7 @@ url:
 ```json5
 {
   "size": 3,
+  "totalSize": 81,
   "plugins": [
     {
       "id": "KCodeYT/VanillaGenerator",
