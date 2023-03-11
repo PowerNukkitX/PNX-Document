@@ -629,8 +629,8 @@ url:
 ## 渲染Markdown  
 
 url:
-- POST /markdown
-- POST /markdown/{repo}
+- POST /git/markdown
+- POST /git/markdown/{repo}
 
 参数:
 

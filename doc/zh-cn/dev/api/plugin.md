@@ -195,3 +195,24 @@ url:
   ]
 }
 ```
+
+## 绘制依赖关系图  
+
+以mermaid格式绘制插件依赖关系图。
+
+**该API为延迟返回API。**
+
+url:
+- /plugin/dependency-graph/{name}
+
+参数:
+- name: 插件名称，如`ChiliShop`
+
+返回示例:  
+```json5
+{
+  "success": true,
+  "reason": null,
+  "mermaid": "graph TD\n    LLSELib(LLSELib)\n    EconomyEvent-.->LLSELib\n    LlamaEconomy-.->LLSELib\n    EconomyAPI-.->LLSELib\n"
+}
+```
