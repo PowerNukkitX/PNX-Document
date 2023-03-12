@@ -51,7 +51,7 @@ jobs:
           name: PNX_Documents
           path: target/output
 
-      - name: 部署中文文档
+      - name: 部署文档到OSS
         uses: fangbinwei/aliyun-oss-website-action@v1
         if: (github.ref_name == 'master') && success()
         with:
@@ -61,6 +61,9 @@ jobs:
           endpoint: oss-cn-hongkong.aliyuncs.com
           folder: target/output
           skipSetting: true
+
+      - name: 部署到PNX云
+        run: bash .github/scripts/deploy-doc.sh ${{ secrets.PNX_CLOUD_TOKEN }}
 
       - name: 输出上传内容
         run: echo ${{ steps.upload-oss.outputs.url }}
