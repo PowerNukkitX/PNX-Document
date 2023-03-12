@@ -206,7 +206,7 @@ url:
 - /plugin/dependency-graph/{name}
 
 参数:
-- name: 插件名称，如`ChiliShop`
+- name: 插件名称，如`LLSELib`
 
 返回示例:  
 ```json5
