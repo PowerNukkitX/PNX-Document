@@ -120,8 +120,19 @@ url:
 
 ## 通过关键词搜索插件
 
-请注意，此API仍处于alpha阶段，搜索结果可能不尽如人意。  
-后续将会对此API的性能和功能进行优化。
+通过关键词搜索插件，此接口会返回与关键词相关的插件列表，搜索考虑的因素包括插件名，作者名，插件topic，介绍，编程语言，主类，依赖库，星标等。
+
+**注意事项：**  
+
+- 关键词应该不超过256字节
+- **搜索返回的ID字段跟其他API中使用的ID字段不同，将`/`替换为了`-`，请使用owner和name字段获取仓库信息**
+- 暂不支持搜索ReadMe中的内容，即ReadMe中的内容不被搜索引擎索引
+- 此API具有模糊搜索功能，允许不完整的词汇和错别字词，可能无法精确匹配
+- 模糊搜索不包括作者名，作者名必须前缀匹配或精确匹配
+- 搜索的结果可能包含关键词中某些词的同义词，如`nukkit`可能会匹配到`nukkitx`，`nukkitx`可能会匹配到`nukkit`
+- 此API无法提供跨语言搜索
+- 参数中的`order`字段仅仅会对插件推荐程度，星标数量和最后更新日期等因素进行排序，匹配精确度永远是第一决定因素，并按照降序排列
+- 被强制下架的插件也有可能被搜索到，请手动根据`banned`字段判断是否被强制下架
 
 url:
 
@@ -138,59 +149,76 @@ url:
 `/plugin/search?keywords=world`  
 ```json5
 {
-  "size": 3,
-  "totalSize": 81,
+  "size": 4,
+  "totalSize": 91,
   "plugins": [
     {
-      "id": "KCodeYT/VanillaGenerator",
-      "owner": "KCodeYT",
-      "name": "VanillaGenerator",
-      "description": "A minecraft: bedrock edition world generator, which setups a bedrock dedicated server to clone chunks on the PowerNukkitX server.",
+      "owner": "WanneSimon",
+      "star": 0,
+      "mainClass": "cc.wanforme.nukkit.nsworld.NSWorld",
+      "description": "Multi world plugin",
       "mainLanguage": "Java",
-      "lastUpdateAt": 1677372828000,
-      "star": 33,
-      "iconDownloadID": 98,
-      "pluginName": "VanillaGeneratorPlugin",
-      "mainClass": "de.kcodeyt.vanilla.VanillaGeneratorPlugin",
-      "banned": false,
-      "qualityScore": 3351,
+      "lastFullIndexTime": 1678640203697,
+      "pluginName": "ns-world",
+      "iconDownloadID": 107,
       "editorRecommendScore": 0,
-      "lastFullIndexTime": 1677938290581
+      "qualityScore": -1385,
+      "name": "ns-world",
+      "lastUpdateAt": 1661873542000,
+      "id": "WanneSimon-ns-world",
+      "banned": false
     },
     {
-      "id": "PowerNukkitX/FastAsyncWorldEdit-PNX",
       "owner": "PowerNukkitX",
-      "name": "FastAsyncWorldEdit-PNX",
-      "description": "Blazingly fast world manipulation for artists, builders and everyone else: https://www.spigotmc.org/resources/13932/",
-      "mainLanguage": "Java",
-      "lastUpdateAt": 1677981372000,
       "star": 2,
-      "iconDownloadID": 90,
-      "pluginName": "FastAsyncWorldEdit",
       "mainClass": "com.sk89q.worldedit.bukkit.WorldEditPlugin",
+      "description": "Blazingly fast world manipulation for artists, builders and everyone else: https://www.spigotmc.org/resources/13932/",
       "softDependencies": [
         "Vault"
       ],
-      "banned": false,
-      "qualityScore": 300,
+      "mainLanguage": "Java",
+      "lastFullIndexTime": 1678691584814,
+      "pluginName": "FastAsyncWorldEdit",
+      "iconDownloadID": 90,
       "editorRecommendScore": 0,
-      "lastFullIndexTime": 1677984146128
+      "qualityScore": 243,
+      "name": "FastAsyncWorldEdit-PNX",
+      "lastUpdateAt": 1677981372000,
+      "id": "PowerNukkitX-FastAsyncWorldEdit-PNX",
+      "banned": false
     },
     {
-      "id": "WanneSimon/ns-world",
-      "owner": "WanneSimon",
-      "name": "ns-world",
-      "description": "Multi world plugin",
+      "owner": "KCodeYT",
+      "star": 33,
+      "mainClass": "de.kcodeyt.vanilla.VanillaGeneratorPlugin",
+      "description": "A minecraft: bedrock edition world generator, which setups a bedrock dedicated server to clone chunks on the PowerNukkitX server.",
       "mainLanguage": "Java",
-      "lastUpdateAt": 1661873542000,
-      "star": 0,
-      "iconDownloadID": 107,
-      "pluginName": "ns-world",
-      "mainClass": "cc.wanforme.nukkit.nsworld.NSWorld",
-      "banned": false,
-      "qualityScore": -1328,
+      "lastFullIndexTime": 1678640210976,
+      "pluginName": "VanillaGeneratorPlugin",
+      "iconDownloadID": 98,
       "editorRecommendScore": 0,
-      "lastFullIndexTime": 1677938433783
+      "qualityScore": 3293,
+      "name": "VanillaGenerator",
+      "lastUpdateAt": 1677372828000,
+      "id": "KCodeYT-VanillaGenerator",
+      "banned": false
+    },
+    {
+      "owner": "MEFRREEX",
+      "star": 0,
+      "mainClass": "theoni.anticaps.Main",
+      "topics": "pnx-plugin",
+      "description": "Makes words from uppercase to lowercase",
+      "mainLanguage": "Java",
+      "lastFullIndexTime": 1678632998170,
+      "pluginName": "AntiCaps",
+      "iconDownloadID": 105,
+      "editorRecommendScore": 0,
+      "qualityScore": 279,
+      "name": "AntiCaps",
+      "lastUpdateAt": 1678451185000,
+      "id": "MEFRREEX-AntiCaps",
+      "banned": false
     }
   ]
 }
