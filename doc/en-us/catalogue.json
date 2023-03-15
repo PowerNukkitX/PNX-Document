@@ -9,7 +9,7 @@
     "Resource Encryption": "config/resource-encryption.html",
     "Compression Acceleration": "config/compression-acceleration.html",
     "PNX with WaterDogPE": "config/waterdog.html",
-    "Flat World": "config/flat-world.html"
+    "Flat World": "config/flat_world.html"
   },
   "FAQ": {
     "To Newcomers": "faq/to_newcomers.html",
