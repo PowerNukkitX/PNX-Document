@@ -53,3 +53,9 @@ JVM启动参数，语法同JVM的-X参数，多个参数用空格分隔。
 JVM启动参数，语法同JVM的-XX参数，多个参数用空格分隔。  
 
 示例：`+UnlockExperimentalVMOptions +UseCGroupMemoryLimitForHeap`  
+
+## http-proxy  
+
+HTTP代理，配置PNX-CLI用来连接API服务器的网络代理，语法为`<host>:<port>`。  
+
+示例：`localhost:1000`

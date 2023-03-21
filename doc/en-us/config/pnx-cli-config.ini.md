@@ -58,3 +58,10 @@ E.g. `prof ms64m`
 The syntax of JVM startup parameters is the same as the -XX parameter of JVM. Multiple parameters are separated by spaces.  
 
 E.g. `+UnlockExperimentalVMOptions +UseCGroupMemoryLimitForHeap`  
+
+## http-proxy
+
+HTTP Proxy, configures the network agent used by PNX-CLI to connect to the API server.  
+The syntax is `<host>:<port>`。
+
+E.g. `localhost:1000`

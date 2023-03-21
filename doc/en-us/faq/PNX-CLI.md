@@ -4,33 +4,95 @@ PNX-CLI is a command line tool for PNX. It can help you to install and start PNX
 windows using . \pnx.exe to run.
 linux use . /pnx to run.
 Hereafter abbreviated to pnx.
-## Some common commands
-The sub-list is the parameter body, and the main list is the command body.
-- pnx start
-   - -g&emsp;Generate startup commands
-   - -r&emsp;Start the server in automatic reboot mode
-   - --stdin=xxx&emsp;Read console input from the specified file (xxx input the file address, from pnx-cli current path)
-- pnx server
-   - --latest&emsp;Install the latest version of pnx core
-   - -u&emsp;Install or upgrade PNX server core (manual selection required)
-- pnx libs
-   - -u&emsp;Install or update dependent libraries
-   - -v&emsp;Check if the dependency library is up to date
-- pnx jvm
-   - check&emsp;View the installed JVMs
-   - remote&emsp;Lists all available JVM in the PNX remote repository
-   - install=name&emsp;Install the JVM according to the name.(The name is queried from the command above)
-   - uninstall&emsp;Uninstall the installed JVM according to the entered serial number.
-- pnx comp
-   - -c&emsp;Check for available addons。
-   - -i=name&emsp;Install or repair the addon according to the entered name. (The name is checked from the command above)
-- pnx about&emsp;Information about the PowerNukkitX CLI
 
-## How to use
-1. Download the latest version of PNX CLI from here (https://github.com/PowerNukkitX/PNX-CLI/releases)
-2. It is recommended to download the executable file for the corresponding platform, e.g. for windows download PNX-CLI-Windows-x86.zip  
-   If you do not have your corresponding platform, you can use the jar package to use, use java -jar xxx command to start
-3. Decompress, the following command should be used in the decompress path
+## Usage
+
+```text
+Usage: pnx [-hV] [--config-path=<config-path>] [-l=<lang>] [COMMAND]
+      --config-path=<config-path>
+                  Select which config file will be used. (Default
+                    pnx-cli-config.ini)
+  -h, --help      Show this help message and exit.
+  -l, --lang, --language=<lang>
+                  Select the language to use temporarily to execute this
+                    command.
+  -V, --version   Print version information and exit.
+Commands:
+  about             About PowerNukkitX CLI.
+  sys-install       Install or uninstall PNX-CLI into the system path.
+  sponsor           See the great people who sponsor the PNX program.
+  jvm               Check the installed JVMs, install new JVMs or uninstall
+                      JVMs.
+  server            Configure(install, update) pnx server.
+  libs              Check, update or fix the libraries.
+  start             Generator start command and start pnx server.
+  components, comp  Check, install or uninstall extra components.
+```
+```text
+Usage: pnx about [-hV]
+About PowerNukkitX CLI.
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+```
+```text
+Usage: pnx sys-install [-hVu]
+Install or uninstall PNX-CLI into the system path.
+  -h, --help        Show this help message and exit.
+  -V, --version     Print version information and exit.
+  -u, --uninstall   Remove PNX-CLI from the system path.
+```
+```text
+Usage: pnx sponsor [-hV]
+See the great people who sponsor the PNX program.
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+```
+```text
+Usage: pnx jvm [-hV] (check | remote | -i=<install> | uninstall)
+Check the installed JVMs, install new JVMs or uninstall JVMs.
+  -h, --help              Show this help message and exit.
+  -V, --version           Print version information and exit.
+      check               Check the installed JVMs.
+  -i, install=<install>   Install a new JVM by its vendor name.
+      remote              List all available JVMs in the remote PNX central
+                            repository.
+      uninstall           Uninstall an existed JVM by its vendor name.
+```
+```text
+Usage: pnx server [-hVu] [--dev] [--latest]
+Configure(install, update) pnx server.
+  -h, --help                Show this help message and exit.
+  -V, --version             Print version information and exit.
+      --dev                 Install the preview development version of PNX.
+      --latest              Force-choose the latest version of pnx server core.
+  -u, -i, update, install   Install or update pnx server core.
+```
+```text
+Usage: pnx libs [-hV] (-u | check)
+Check, update or fix the libraries.
+  -h, --help            Show this help message and exit.
+  -V, --version         Print version information and exit.
+      check             Check libraries.
+  -u, -f, fix, update   Install or fix the libraries.
+```
+```text
+Usage: pnx start [-hVgr] [--stdin=<stdin>]
+Generator start command and start pnx server.
+  -h, --help            Show this help message and exit.
+  -V, --version         Print version information and exit.
+  -g, --generate-only   Generate start command only, do not start pnx server.
+  -r, --[no-]restart    Auto-restart pnx server if it crashes.
+      --stdin=<stdin>   Input into PNX through a specific file.
+```
+```text
+Usage: pnx components [-hV] (-i=<update> | -c)
+Check, install or uninstall extra components.
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+  -c, check       Check available components.
+  -i, -u, update, install=<update>
+                  Install or fix an extra component by its name.
+```
 
 ### Linux Enter the following command to try
 ```
