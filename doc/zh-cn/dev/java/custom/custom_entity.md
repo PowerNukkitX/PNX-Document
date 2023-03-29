@@ -80,7 +80,8 @@ public class MyHuman extends EntityIntelligentHuman {
                 ),
                 Set.of(new NearestPlayerSensor(40, 0, 20)),
                 Set.of(new WalkController(), new LookController(true, true)),
-                new SimpleFlatAStarRouteFinder(new WalkingPosEvaluator(), this)
+                new SimpleFlatAStarRouteFinder(new WalkingPosEvaluator(), this),
+                this
         );
     }
 }
