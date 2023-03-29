@@ -17,7 +17,7 @@ public class MyPig extends Entity implements CustomEntity {
         super(chunk, nbt);
     }
     public int getNetworkId() {
-        return Entity.NETWORK_ID;//自定义实体网络ID,默认-1即可
+        return getDefinition().getRuntimeId();
     }
     public CustomEntityDefinition getDefinition() {
         return def;
