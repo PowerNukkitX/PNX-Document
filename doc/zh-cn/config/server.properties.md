@@ -74,3 +74,11 @@
 强制使用服务器的资源包（off/on）
 ## xbox-auth=on
 启用 Xbox 在线验证（该功能可防止未登陆的玩家进入服务器）（off/on）
+## check-login-time=on
+启用玩家登陆包时间检查（off/on）
+## allow-shaded=off
+是否允许使用shaded包启动服务器（off/on）
+## server-authoritative-movement=server-auth
+服务器移动验证模式（client-auth/server-auth/server-auth-with-rewind）
+## network-encryption=on
+是否启用网络加密（off/on）

@@ -74,3 +74,11 @@ Auto Save World (off/on）
 Force the use of the server's resource package (off/on）
 ## xbox-auth=on
 Enable Xbox online verification (this function can prevent unlisted player from entering the server) (off/on）
+## check-login-time=on
+Enable player login package time check (off/on)
+## allow-shaded=off
+Whether to allow the use of shaded packages to start the server (off/on)
+## server-authoritative-movement=server-auth
+Server movement authentication mode (client-auth/server-auth/server-auth-with-rewind)
+## network-encryption=on
+Whether network encryption is enabled (off/on)
