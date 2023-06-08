@@ -99,3 +99,19 @@ You can try to solve this problem in the following ways:
 - Configure PNX to use less memory
 - Increase virtual memory size of the operating system (which may severely degrade performance)
 - Expand the size of the physical memory
+
+## How to disable the automatic restart 
+
+Waiting 10 seconds for automatic restart after shutdown is the default feature of PNX-CLI.
+You can turn this off by adding 'start' after the startup command.
+
+For example:  
+
+```shell
+# Native PNX-CLI on Windows
+.\pnx start
+# Native PNX-CLI on Linux
+./pnx start
+# Jar version of PNX-CLI
+java -jar PNX-CLI.jar start
+```
