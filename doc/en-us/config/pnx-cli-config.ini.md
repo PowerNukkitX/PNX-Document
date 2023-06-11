@@ -22,6 +22,12 @@ The language you use. The optional values are:
 - en-us English
 - zh-cn Simplified Chinese
 
+### force-arguments
+
+If you set this item, PNX-CLI will ignore the arguments from the command line and use the arguments in this item.
+
+E.g. `start -g` (any other arguments is ok)
+
 ### preferredJVM  
 
 The name of the JVM you preferred, default to `GraalVM`.    

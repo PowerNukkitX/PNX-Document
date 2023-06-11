@@ -19,6 +19,12 @@ true/false，是否开启PNX-CLI调试模式，默认值为false。
 - en-us 英语
 - zh-cn 简体中文
 
+### force-arguments
+
+如果您设置了此项，PNX-CLI将忽略命令行中的参数，使用此项中的参数。
+
+示例：`start -g`（其他参数随意）
+
 ### preferredJVM  
 
 优先使用的JVM，默认值为`GraalVM`，可以修改为其他JVM发行版名称。  
