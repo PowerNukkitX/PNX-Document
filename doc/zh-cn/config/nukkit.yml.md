@@ -44,6 +44,7 @@ Nukkit服务器语言
  - compression-level: 7
  - async-compression: false
  - zlib-provider: 2 # 详见硬件加速压缩
+ - snappy: false # 是否启用Snappy网络数据包压缩
 
 ## debug:
 debug相关设置

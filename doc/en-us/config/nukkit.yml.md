@@ -45,6 +45,7 @@ Network related settings
  - compression-level: 7
  - async-compression: false
  - zlib-provider: 2 # See hardware accelerated compression for details
+ - snappy: false # Enable Snappy network packet compression
 
 ## debug:
 debugRelated settings
