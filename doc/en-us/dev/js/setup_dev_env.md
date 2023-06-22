@@ -52,10 +52,10 @@ PNX为您在VsCode中进行javascript/typescript插件开发提供良好的支�
 
 1. 在`@dir`文件夹下创建一个`.header`文件夹
 2. [点击此处](https://assets.powernukkitx.cn/stable/pnx.d.ts) 下载PNX内置模块类型定义到刚刚创建的文件夹中
-3. 使用 [PNX字节码分析工具](https://www.powernukkitx.cn/tools/jarInsight) 将你使用的核心的类型定义导出并下载到刚刚创建的文件夹中
+3. 使用 [PNX字节码分析工具](https://www.powernukkitx.com/tools/jarInsight.html) 将你使用的核心的类型定义导出并下载到刚刚创建的文件夹中
 
 > 如何使用PNX字节码分析工具？
-> 1. [打开网页](https://www.powernukkitx.cn/tools/jarInsight)
+> 1. [打开网页](https://www.powernukkitx.com/tools/jarInsight.html)
 > 2. 点击`选择文件`按钮，选择PNX核心Jar包。**注意，你应该使用4-5MB的没有内置依赖库的核心jar包，否则会导致生成过大的定义文件使得Vscode崩溃。**
 > 3. 点击`保存d.ts定义文件`按钮，下载定义文件并移动到正确的文件夹中
 
