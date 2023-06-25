@@ -116,6 +116,9 @@ use this method, since they are unit blocks
 Set the client selection box for this block, you don't usually need to use this method for block that doesn't use custom
 geometry model, because it's a unit block
 
+`clientFriction(float friction)`  
+Set the client friction factor of this block, which represents the player's movement speed on the block.The larger the value, the faster the movement
+
 **Step 3: build instance**
 You can choose between two types of build, the default `build` and `customBuild`
 
@@ -149,6 +152,10 @@ Typically, the client-side digging time is defined to take 999 seconds, so that 
 depends only on the server-side calculation.
 The hardness values can be chosen by referring to the hardness of other blocks inside PNX, which are `2` for wood, `5`
 for iron, and `35` for obsidian
+
+### About the friction of custom block
+`clientFriction(float friction)` in `CustomBlockDefinition#builder` represents the client friction, which is used to control the speed at which the player walks on the custom block.The larger the value, the faster the movement.  
+Override the `double getFrictionFactor()` in the `Block` class to represent the friction on the server side, which is used to control the speed that player drops item,entity walk and boat movement on the block.
 
 ### Custom block example
 
@@ -193,6 +200,7 @@ public class MySlab extends BlockTransparentMeta implements CustomBlock {
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition
                 .builder(this, "blue_mahoe_planks")//The first is a block instance, the second is a block material name
+                .clientFriction(0.1f)//The friction of the client is 0.1, and the player walks on it like an ice
                 .geometry("geometry.custom_slab")//Use the geometry model defined in the resourcepack
                 .permutations(//Set the changes in different block states
                         new Permutation(Component.builder()//The collision box and selection box for this block in the lower state
@@ -227,8 +235,9 @@ public class MySlab extends BlockTransparentMeta implements CustomBlock {
         return 5;
     }
 
+    //The friction of the ice on the server side is 0.9
     public double getFrictionFactor() {
-        return 0.1;
+        return 0.9;
     }
 
     public double getResistance() {

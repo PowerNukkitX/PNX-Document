@@ -98,6 +98,9 @@ Geometry中可以定义每个模型骨骼是否显示
 `selectionBox(Vector3f origin,Vector3f size)`  
 设置此方块的客户端选择箱，不使用自定义几何模型的方块通常不需要使用该方法，因为是单位立方体
 
+`clientFriction(float friction)`  
+设置此方块的客户端摩擦因数，它代表玩家在该方块上的移动速度，越大移动越快
+
 **第三步：build实例**
 可以选择两种build方式，默认`build`和`customBuild`
 
@@ -125,6 +128,10 @@ Geometry中可以定义每个模型骨骼是否显示
 **自定义方块的挖掘时间，取决于服务端侧和客户端侧挖掘时间的最小值。**  
 通常情况下，客户端侧挖掘时间被定义为需要999秒，这样自定义方块的挖掘时间就只取决于服务端侧的计算了。
 选取硬度值可以参考PNX内部其他方块的硬度，木头的硬度是`2`, 铁块的硬度是`5`, 黑曜石的硬度是`35`
+
+### 关于自定义方块的摩擦力
+`CustomBlockDefinition#builder`中的`clientFriction(float friction)`代表客户端摩擦系数，用于控制玩家在自定义方块上行走的速度，值越大，移动越快。  
+覆写`Block`类中的`double getFrictionFactor()`代表服务端侧的摩擦系数，用于控制玩家丢弃物品、实体、船其在上方移动的速度。
 
 ### 自定义方块实例
 
@@ -165,6 +172,7 @@ public class MySlab extends BlockTransparentMeta implements CustomBlock {
     public CustomBlockDefinition getDefinition() {
         return CustomBlockDefinition
                 .builder(this, "blue_mahoe_planks")//第一个是方块实例，第二个是方块材质名
+                .clientFriction(0.1f)//客户端摩擦系数0.1,玩家在上方行走类似于冰块一样的行为
                 .geometry("geometry.custom_slab")//使用材质包中定义的几何模型
                 .permutations(//设置不同方块状态下的变化
                         new Permutation(Component.builder()//下板砖状态下，该方块的碰撞箱和选择箱
@@ -200,9 +208,9 @@ public class MySlab extends BlockTransparentMeta implements CustomBlock {
         return 5;
     }
 
-    //摩擦因素
+    //冰块在服务端的摩擦系数为0.9
     public double getFrictionFactor() {
-        return 0.1;
+        return 0.9;
     }
 
     //防爆抗性
