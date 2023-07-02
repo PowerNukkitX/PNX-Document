@@ -24,6 +24,7 @@
     "lvl5": "h6",
     "text": "p, li, td, code.language-properties, code.language-yaml"
   },
+  "js_render": true,
   "custom_settings": {
     "attributesForFaceting": [
       "language"
