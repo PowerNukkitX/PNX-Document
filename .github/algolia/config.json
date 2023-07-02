@@ -1,7 +1,7 @@
 {
   "index_name": "pnx_doc",
   "start_urls": [
-    "https://doc.powernukkitx.cn"
+    "https://powernukkitx.com/doc/index.html"
   ],
   "scrape_start_urls": false,
   "selectors_exclude": [
