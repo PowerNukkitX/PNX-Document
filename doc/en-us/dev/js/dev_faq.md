@@ -25,7 +25,7 @@ This is usually caused by two problems:
 - The `load` field in `plugin.yml` is filled with `STARTUP` instead of the correct `POSTWORLD`
 
 ## 3. Some considerations when importing modules from other JS plugins
-Each JS plugin of PNXJS is a separate `Context`, which means that if you import a module of another plugin using `import`, it will completely reload the module of the plugin being imported once.  
+Each PNX-JS plugin runs in a separate `Context`, which means that if you import a module of another plugin using `import`, it will completely reload the module of the plugin being imported once.  
 For example, the following example is based on the [LLSE-Lib](https://github.com/PowerNukkitX/LLSE-Lib) library.
 
 Observe the following code. According to the NK plugin loading rules, the APlugin plugin will be loaded before the BPlugin plugin
@@ -43,11 +43,11 @@ BPlugin.js
 import {A} from "APlugin.js";
 console.log(A);
 ```
-where the APlugin.js `console.log("this is A plugin");` will be executed twice, in the load APlugin will output once, and then load BPlugin, because the B plug-in imported the `APlugin` plug-in A variable, this will be in the B plug-in `Context` completely loaded once A plug-in which is output once again.
+where the APlugin.js `console.log("this is A plugin");` will be executed twice, in the load APlugin will output once, and then load BPlugin, because the B plugin imported the `APlugin` plugin A variable, this will be in the B plugin `Context` completely loaded once A plugin which is output once again.
 
 The `onlyOnceExecute` from the [LLSE-Lib](https://github.com/PowerNukkitX/LLSE-Lib) library is designed to solve this problem.
 The first parameter of `onlyOnceExecute` passes a callback function and the second parameter passes a UUID as a unique identifier, and this callback function will only be executed once, no matter how many plugins import the plugin.
 
-But since each JS plug-in of PNXJS is a separate `Context`, the B plug-in imports the A variable of the `APlugin` plug-in, which is not initialized, while the `Context` of the B plug-in loads the A plug-in completely once, but since `onlyOnceExecute` will only be executed once globally, the A variable in the B plugin's `Context` will not be initialized
+But since each JS plugin of PNXJS is a separate `Context`, the B plugin imports the A variable of the `APlugin` plugin, which is not initialized, while the `Context` of the B plugin loads the A plugin completely once, but since `onlyOnceExecute` will only be executed once globally, the A variable in the B plugin's `Context` will not be initialized
 
 
