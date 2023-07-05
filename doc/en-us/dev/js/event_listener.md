@@ -1,54 +1,54 @@
-# 事件监听  
+# Event Listening
 
-事件是PNX中插件执行工作的主要方式之一，本章节将通过带您制作一个简单的屏蔽词插件带您学会使用PNX-JS进行事件监听。  
+Events are one of the main ways plugins perform their work in PNX, and this section will take you through the process of learning to use PNX-JS for event listening by taking you through the creation of a simple blockword plugin.
 
-## 什么是事件  
+## What is an event  
 
-每当服务器中发生了特定的行为，一个事件对象就会产生。事件是对某种行为或动作的描述，比如玩家登录、
-玩家离开、玩家发送消息等等。种种的行为或动作都对应一个事件对象作为它们的抽象，事件对象中带有这个行为或者动作中的一些
-关键信息，比如玩家发送消息事件对象中就带有发送事件的玩家对象、发送的消息字符串等等，而玩家对象又包含这个玩家的
-位置、生命值、物品栏等等数据。  
+An event object is generated whenever a specific action occurs in the server. An event is a description of some behavior or action, such as a player logging in, a
+player leaves, player sends a message, and so on. Each kind of behavior or action has an event object as its abstraction, and the event object carries some key information about the behavior or action.
+The event object contains some key information about the behavior or action, e.g., the player object that sent the event, the message string sent, etc., and the player object contains the player's
+The player object contains the player's location, life value, item bar, etc.
 
-插件可以向PNX注册**监听器**来在事件发生的时候做出反应。每个事件对象都包含了对事件的描述，通常事件监听器会在事件发生之前被调用，
-此时监听器可以通过取消事件来阻止事件真的发生，如果没有任何事件监听器取消了这个事件，那么它就会真正地在游戏内发生。
-监听器的执行是单线程的，所有监听器在注册的时候都要给PNX提供它的优先级，PNX会按照优先级将监听器排序，然后依次执行监听器。
-很可能在你的插件的监听器被执行之间这个事件已经被取消了，但通常这不会影响你的监听器的执行，你的监听器仍然会被执行，你可以通过
-`event.isCancelled()`来判断事件是否被取消了（后面会详细讲解）。
-**特别注意的是，优先级越高，执行顺序越往后排。也就是说，优先级越低，越优先执行！**   
-~~*你问为啥不是优先级越高越优先？我也这么认为，但是NKX就是这样奇怪地设计的，为了兼容NK生态我们不得不做出这个反人类的妥协*~~
+Plugins can register **listeners** with PNX to react to events as they occur. Each event object contains a description of the event, and usually the event listener is called before the event occurs.
+At this point the listener can prevent the event from actually happening by cancelling it, if no event listener cancels the event, then it will actually happen within the game.
+The execution of listeners is single-threaded, all listeners are given its priority to PNX when they are registered, and PNX will sort the listeners by priority and then execute the listeners in order.
+It is likely that this event will have been cancelled between the time your plugin's listener is executed, but this usually does not affect the execution of your listener, which will still be executed, and you can get it to work with the
+`event.isCancelled()` to determine if the event has been cancelled (more on this later).
+**Special note is that the higher the priority, the further back in the execution order you go. That is, the lower the priority, the higher the execution priority! **   
+~~*Why not the higher the priority, the higher the priority, you ask? I think so too, but that's how NKX is strangely designed, and we had to make this anti-human compromise to be compatible with the NK ecosystem *~~.
 
-监听器参与事件的过程如下面的流程如所示：  
+The listener participates in the event process as shown in the following flow:
 
 ![PNX事件流程图](../../../image/js_tutorial/PNX事件流程图.svg)  
 
-PNX中提供了非常多事件，您可以在 [事件对照表](../../res/事件对照表.html) 中查看。表中每个事件都标注了类名，
-您可以在插件中使用这个类名来监听这个事件，点击类名也可以进入对应的JavaDoc查看更多细节。  
+PNX provides a very large number of events that you can use in the [Event Comparison Table](../../res/事件对照表.html) in the table. Each event in the table is labeled with the name of the category of the event.
+You can use this class name in the plug-in to listen to this event, and click on the class name to go to the corresponding JavaDoc for more details.
 
-## 注册一个事件监听器  
+## Register an event listener
 
-在PNX-JS中，注册事件监听器是通过`:powernukkitx`内置模块中的`PowerNukkitX`来执行的，下面提供了一个简单的模板：  
+In PNX-JS, registering event listeners is done through the`:powernukkitx`in the built-in module`PowerNukkitX`to perform, a simple template is provided below:
 
 ```javascript
-import { PowerNukkitX, EventPriority } from ":powernukkitx"; // PowerNukkitX和EventPriority都是:powernukkitx内置模块中的
+import { PowerNukkitX, EventPriority } from ":powernukkitx"; //PowerNukkitX and EventPriority are both in the :powernukkitx built-in module
 
-// 注册事件监听器只能在main函数中或者main函数执行完毕之后才可以
+// Registering event listeners can only be done in the main function or after the main function has been executed
 export function main() {
-    PowerNukkitX.listenEvent("cn.nukkit.event.Event", //这里的字符串写事件的类名，在事件对照表中有
-        EventPriority.NORMAL, // 监听器的优先级，有LOWEST LOW NORMAL HIGH HIGHEST MONITOR六级，LOW最先，MONITOR最后
-        event => { // 这个箭头函数的event参数就是事件对象，类型即为上面你写的事件的类
-        // 事件处理代码
+    PowerNukkitX.listenEvent("cn.nukkit.event.Event", //The string here writes the class name of the event, which is available in the event cross-reference table
+        EventPriority.NORMAL, // The priority of the listener, there are LOWEST LOW NORMAL HIGH HIGHEST MONITOR six levels, LOW first, MONITOR last
+        event => { // The event parameter of this arrow function is the event object, the type of which is the class of the event you wrote above
+        // Event Handling Code
     })
 }
 ```
 
-`:powernukkitx`模块提供了一系列服务器插件所需要的最基本功能函数，比如注册事件监听器，注册函数等等，具体内容可以看
-[powernukkitx内置模块JSDoc](../inner-module/powernukkitx.html) 。  
+`:powernukkitx`module provides a series of the most basic functions required by the server plug-in, such as registering event listeners, registering functions and so on, the details of which can be seen in
+[powernukkitx built-in module JSDoc](../inner-module/powernukkitx.html) 。  
 
-## 实现禁止发出脏话的功能
+## Implement the function to prohibit swearing
 
-这里，我们通过注册一个 [cn.nukkit.event.player.PlayerChatEvent](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/event/player/PlayerChatEvent.html) 
-*(玩家聊天事件)* 来监听玩家在聊天框中发出消息的事件，并检测玩家是否发出了脏话，如果是，则取消事件，让玩家无法
-发出这条带有脏话的消息。  
+Here, we register a [cn.nukkit.event.player.PlayerChatEvent](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/event/player/PlayerChatEvent.html)
+*(PlayerChatEvent)* to listen for events where the player sends a message in the chat box and detect if the player has sent an expletive, and if so, cancel the event so that the player cannot
+send the message with the expletive.
 
 ```javascript
 export function main() {
@@ -58,7 +58,7 @@ export function main() {
 }
 ```
 
-首先，我们应该判断事件是否已经取消，如果事件已经被其他插件取消了，我们就不需要再进行判断。  
+First, we should determine whether the event has been cancelled or not. If the event has been cancelled by other plugins, we don't need to make another determination.
 
 ```javascript
 export function main() {
@@ -70,14 +70,14 @@ export function main() {
 }
 ```
 
-我们查阅玩家聊天事件的JavaDoc可知 *(在事件对照表中可以点击链接)* ，它继承自`cn.nukkit.event.Event`类，所以
-它也拥有`isCancelled`函数 *(查询这个事件是否已经取消)* 和`setCancelled`函数 *(取消这个事件)*。  
+As we can see by checking the JavaDoc of the player chat event *(clickable link in the event cross-reference table)* , it inherits from the `cn.nukkit.event.Event` class, so
+It also has the `isCancelled` function *(check if this event is cancelled) * and the `setCancelled` function *(cancel this event) *.
 
-> JavaDoc中有如下部分：  
-> 从类继承的方法 cn.nukkit.event.Event  
-> getEventName, isCancelled, setCancelled, setCancelled  
+> The JavaDoc has the following sections:  
+> Methods inherited from class cn.nukkit.event.  
+> getEventName, isCancelled, setCancelled, setCancelled
 
-接下来，我们获取事件中玩家发送的消息，判断其中是否有`fuck`这一脏话，如果有则取消这个事件。  
+Next, we get the message sent by the player in the event, determine if it contains the expletive `fuck`, and cancel the event if it does.
 
 ```javascript
 export function main() {
@@ -92,11 +92,11 @@ export function main() {
 }
 ```
 
-查阅玩家聊天事件的JavaDoc可知，它有一个叫做`getMessage`的方法，根据我们之前说的望名知义的方法，分解为`get`和
-`Message`，即`获取`和`消息`，连起来就是`获取消息`，JavaDoc上面说它返回`String`，就是字符串，我们就能大概确定，
-这个函数可以从事件中获取玩家发送的消息。这样的过程不会再在以后赘述，希望你已经掌握了。  
+Checking the JavaDoc of the player chat event, we can see that it has a method called `getMessage`, which is broken down into `get` and `Message` according to the look-alike method we mentioned before.
+`Message`, i.e. `get` and `message`, linked together is `getMessage`, the JavaDoc above says it returns `String`, which is a string, so we can probably determine that
+This function can get the message sent by the player from the event. Such a process will not be repeated later, I hope you have mastered.
 
-我们不仅要让玩家发不出去，而且还要让玩家知道自己不是网卡了而是因为被禁止发脏话了，我们要给玩家一些提示：  
+Not only do we want to keep the player from sending out, but we also want to let the player know that he is not networked out but because he has been banned from sending profanity, and we want to give the player some hints that
 
 ```javascript
 export function main() {
@@ -106,27 +106,26 @@ export function main() {
         }
         if (event.getMessage().includes("fuck")) {
             event.setCancelled();
-            event.getPlayer().sendMessage("禁止说脏话");
+            event.getPlayer().sendMessage("No swearing");
         }
     })
 }
 ```
 
-查阅玩家聊天事件的JavaDoc可知`getPlayer`方法能返回这个事件的玩家，接下来，我们可以点击JavaDoc中的方法返回值，
-那是指向返回值的类型的JavaDoc文档的链接，在 [cn.nukkit.Player](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/Player.html)
-也就是玩家类的JavaDoc中，我们找到了`sendMessage`函数，用于向玩家发送消息。PNX的设计哲学中，在对象上面使用的方法(函数)
-通常只会对这个对象生效，也就是说我们对这个玩家对象使用`sendMessage`函数，只有这一个玩家能接受到消息。  
+Checking the JavaDoc for the player chat event shows that the `getPlayer` method returns the player for this event, next, we can click on the method return value in the JavaDoc.
+That is a link to the JavaDoc document of the type of the returned value, in [cn.nukkit.Player](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/Player.html)
+In the JavaDoc of the player class, we find the `sendMessage` function, which is used to send messages to the player.
+will usually only work on this object, which means that if we use the `sendMessage` function on this player object, only this one player will receive the message.
 
-至此，我们的插件就初步完成了，接下来我们需要编写plugin.yml等，并且将插件安装到服务器中进行测试。  
+At this point, our plug-in is initially complete. Next we need to write plugin.yml, etc., and install the plug-in into the server for testing.
 
-## 安装插件并测试  
+## Install the plugin and test it  
 
-编写plugin.yml很简单，你可以遵照 [插件格式章节](../插件格式.html) 中的内容来编写。
-编写完成后，将你的js代码和yml文件复制到`plugins`文件夹下面一个以`@`加上你插件名字命名的文件夹中，重启服务器即可进服测试。  
+Writing plugin.yml is simple, you can follow [Plug-in format chapter](../插件格式.html).
+After writing, copy your js code and yml file to a folder named with `@` plus the name of your plugin under the `plugins` folder and restart the server to test it in the service.
 
-如果你在你的聊天框中输入`fuck xxx`，然后收到了一条`禁止说脏话`消息，那就说明你的插件成功了！  
+If you type `fuck xxx` into your chat box and you get a `no swearing` message, then your plugin worked!
 
-## 获取全部代码  
+## Get all codes  
 
-本节所有的全部代码和完整插件可以在Github仓库 [ObscenityDefender](https://github.com/PowerNukkitX/ObscenityDefender)
-中获取。  
+All the full code and complete plugins for this section are available on the Github repository [ObscenityDefender](https://github.com/PowerNukkitX/ObscenityDefender)
