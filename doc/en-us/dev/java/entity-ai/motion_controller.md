@@ -2,28 +2,27 @@
 
 ***author: daoge_cmd***
 
-**Waiting for translation, if you are interested in translation, welcome to contribute.**
+**The translation made by AzaleeX contributed to the PowerNukkitX documentation**
 
+## 1.0 Control entity movement
 
-## 1.0 控制实体运动
+Motion controllers are used to control the behavior of entities, such as the specific implementation of movement, jumping, attacking, and so on.
 
-运动控制器是用来控制实体的行为的，比如移动、跳跃、攻击等等的具体实现。
+For different entities, different controllers can be provided to achieve special implementations of the above behaviors.
 
-对于不同实体，可以提供不同的控制器，以实现上述行为的特殊实现。
+## 1.1 Workflow
 
-## 1.1 工作流程
-
-控制器非常简单，其接口只有一个方法：
+The controller is very simple and its interface has only one method:
 
 ![image-20221215150633863](https://s2.loli.net/2022/12/15/axcKRQHtb4urX9E.png)
 
-```control```方法每gt会被调用一次，处理实体移动
+```control```method will be called once per gt to handle entity movement
 
-## 1.2 通过操作记忆控制控制器
+## 1.2 Control controller via operating memory
 
-控制器通过读取特定的memory完成工作
+The controller does its job by reading a specific memory
 
-拿羊举例，其使用的两个控制器```LookController```,```WalkController```使用到了以下的几个memory：
+Take the example of a sheep, which uses two controllers```LookController```,```WalkController```The following memories are used:
 
 ```java
 MemoryType<Vector3> LOOK_TARGET = new MemoryType<>("minecraft:look_target");
@@ -34,10 +33,10 @@ MemoryType<Boolean> SHOULD_UPDATE_MOVE_DIRECTION = new MemoryType<>("minecraft:s
 MemoryType<Boolean> ENABLE_PITCH = new MemoryType<>("minecraft:enable_pitch", true);
 ```
 
-## 1.3 介绍：默认的几个控制器
+## 1.3 Introduction: Several controllers by default
 
-核心已经自带了几个控制器，在大多数情况下，你可以直接拿来使用：
+The core already comes with several controllers, which in most cases you can use directly:
 
-- WalkController 适用于行走在陆地上的生物，控制实体移动
-- SpaceMoveController 适用于天上飞/水里游的生物，控制实体移动
-- LookController 控制实体身体/头部的yaw和pitch
+- WalkController for walking creatures on land, controlling the movement of entities
+- SpaceMoveController for flying/water creatures, control entity movement
+- LookController controls the yaw and pitch of the entity's body/head
