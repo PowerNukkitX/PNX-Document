@@ -1,43 +1,43 @@
-# 基本知识    
+# Basic knowledge
 
-本章将带您梳理开发PNX插件的最基本的一些知识。
+This chapter will take you through some of the most basic knowledge of developing PNX plug-ins.
 
 ## ES、JS、ECMA、ECMAScript、JavaScript？  
 
-很多新人都听说过上面的这些名字却又不清楚，这里对它们做一些澄清。  
+Many newcomers have heard of these names above but are not sure, so here are some clarifications on them.  
 
 ### JS、JavaScript  
 
-你可能猜到了，JS就是JavaScript的简称，JavaScript跟Java关系不大，仅仅是因为当年开发JS的人与开发Java的人
-有~~商业互吹~~合作，当时Java大火，初出茅庐的JS才“借用”了Java的大名。  
+You may have guessed that JS is short for JavaScript, JavaScript has little to do with Java, simply because the people who developed JS back then and the people who developed Java
+There was ~~ business mutual blow ~~ cooperation, when Java was on fire, the fledgling JS only "borrowed" the name of Java.
 
 ### ES、ECMA、ECMAScript  
 
-首先来说ECMAScript，ECMAScript和JS一样，也是JavaScript的另一种称呼，也是JavaScript的官方正式称呼。  
-JavaScript后来被ECMA（欧洲计算机制造商协会）控制，这门脚本语言就自然而然地叫做ECMAScript了。  
+Let's start with ECMAScript, which, like JS, is another name for JavaScript and the official name for JavaScript.  
+JavaScript was later controlled by ECMA (European Computer Manufacturers Association) and this scripting language was naturally called ECMAScript.
 
-现在，我们通常说到ES的时候，有两种意思：  
-1. ES就是ECMAScript，或者说JavaScript的简称  
-2. 因为ECMA每次修订JS语言的时候都会发布一个新标准，以ES+版本号来命名，所以也可以指代JS的某个特殊版本  
+Now, when we usually talk about ES, we mean two things:
+1. ES is short for ECMAScript, or JavaScript
+2. because ECMA releases a new standard each time it revises the JS language, named after ES + version number, it can also refer to a particular version of JS
 
-## JS语法  
+## JS syntax
 
-PNX-JS中使用的是ES13的JS语法，即2022年新修订的JS语法。  
-有一点值得注意，JavaScript是向前兼容的，这意味着所有老版本的代码可以在新版中使用。  
+The JS syntax used in PNX-JS is that of ES13, the new 2022 revision of JS.  
+One thing worth noting is that JavaScript is forward compatible, which means that all code from older versions can be used in newer versions.
 
-当然，我们的开发主要还是使用ES6（2015年修订的JS语法），您只需要了解ES6就可以开始开发JS插件了。  
+Of course, our development still primarily uses ES6 (the 2015 revised JS syntax), and you only need to understand ES6 to start developing JS plugins.
 
-如果您还不了解JS语法，我们推荐您在此处查看简单的 [ECMAScript教程](https://www.w3cschool.cn/ecmascript/) ，您
-不必全部看完或记忆，只需要看完基础章节，跟着PNX-JS教程在实践中边做边学即可，遇到不会的回过头去看ES教程就行了。  
+If you don't know JS syntax yet, we recommend checking out the simple [ECMAScript tutorial](https://www.w3cschool.cn/ecmascript/) here,
+You don't need to read or memorize it all, just read the basic chapters, follow the PNX-JS tutorials and learn by doing, and go back to the ES tutorials if you don't know what you're doing.
 
-## ESM模块  
+## ESM Module 
 
-PNX插件使用ESM（ECMA Script Module）模块系统组织代码，这确保了代码有良好的耦合和高复用性。关于ESM的具体内容
-您可以 [在此处](https://zhuanlan.zhihu.com/p/400573436) 学习，这里结合PNX-JS实际进行简单的说明：  
+The PNX plug-in uses the ESM (ECMA Script Module) module system to organize the code, which ensures good coupling and high reusability of the code. For details on ESM
+You can learn it [here](https://zhuanlan.zhihu.com/p/400573436) and here is a brief explanation in the context of PNX-JS in practice:
 
-每个PNX-JS插件都是由多个模块构成的，而每个JS插件就是一个单独的模块。每个模块中默认情况下所有的函数和变量在
-其他模块中都是不可见的（不可以在这个js文件之外使用），如果我们要使用的话，需要先将它标注导出，每个模块中需
-要导出的函数或变量我们只需要在声明时加上`export`关键字即可，例如这个*lib.js*：  
+Each PNX-JS plugin is composed of several modules, and each JS plugin is a separate module. By default all functions and variables in each module are not visible in
+are not visible in other modules (they cannot be used outside this js file), so if we want to use it, we need to mark it as exported first, and for each module we need to
+To export functions or variables in each module, we just need to add the `export` keyword to the declaration, e.g., this *lib.js*: `export` keyword:
 
 ```js
 function myFunc1() {
@@ -55,103 +55,103 @@ var a;
 var b;
 ```
 
-其中，一个JS插件的入口模块会在`plugin.yml`中指定，PNX服务器认为这个模块肯定导出了一个`main`函数和一个`close`函数，
-PNX服务器会在特定的时机调用它们，具体已经在 [上一章](./HelloWorld.html) 中描述了。  
+where the entry module of a JS plugin will be specified in `plugin.yml`, and the PNX server assumes that this module must export a `main` function and a `close` function.
+The PNX server will call them at specific times, as described in [previous chapter](. /HelloWorld.html).
 
-要使用其他模块导出的内容，单单是标注为导出还不够，还需要在要使用它的模块中添加导入声明，例如我们有一个*index.js*文件
-它在上面提到的`lib.js`的相同目录中：  
+To use content exported by other modules, it's not enough to simply mark it as exported, you also need to add an import declaration to the module you want to use it in, e.g. we have an *index.js* file
+which is in the same directory as `lib.js` mentioned above:
 
 ```js
-// 从lib.js中导入myFunc2函数和b变量
+// Import myFunc2 functions and b variables from lib.js
 import { myFunc2, b } from "lib.js";
 
-//现在我们可以使用导入了的函数和变量了
+//Now we can use the imported functions and variables
 myFunc2();
 console.log(b);
 ```
 
-当然，PNX还提供了一些内置模块，这些内置模块通常以`:`开头，你可以直接导入，例如：  
+Of course, PNX also provides some built-in modules, which usually start with `:` and you can import them directly, e.g:
 
 ```js
 import { PowerNukkitX } from ":powernukkitx";
 ```
 
-PNX还提供了直接导入Java类的功能，一个Java类就是一个模块，例如：  
+PNX also provides the ability to import Java classes directly. A Java class is a module, e.g:  
 
 ```js
 import { Player } from "cn.nukkit.Player";
 ```
 
-导入Java类将会是日后开发中用到最多的导入，Java中任何的Java类都可以被导入，包括Java自带的，PNX中的和其他Jar包插件中的。
+Importing Java classes will be the most used import in future development. Any Java class in Java can be imported, including those that come with Java, those in PNX and those in other Jar package plugins.
 
-在上面的例子中，我们导入了`Player`类，每个Java类都有一个直接类名和完整类名，直接类名就是类本身的名字，比如上面
-我们提到的`Player`，而完整类名是这个类的包名加上直接类名，对于`Player`而言，其包名为`cn.nukkit`，所以完整
-类名即为`cn.nukkit.Player`，包名类似于文件夹，只不过它是一个Jar包内部的类似于文件夹的文件分类方式。  
+In the above example, we imported the `Player` class, each Java class has a direct class name and a full class name, the direct class name is the name of the class itself, such as
+The direct class name is the name of the class itself, like the `Player` we mentioned above, and the full class name is the package name of the class plus the direct class name, for `Player`, its package name is `cn.nukkit`, so the full
+The class name is `cn.nukkit.Player`, the package name is similar to a folder, except that it is a folder-like way of classifying files inside a Jar package.
 
-在导入Java包的时候，导入的模块名直接写完整类名即可。  
+When importing Java packages, the imported module name can be directly written with the full class name.
 
-您可以在JavaDoc中查看相关Java类的内容。如果还有更多不明白的地方，可以查看 [模块详解章节](../模块.html)。  
+You can view the contents of the relevant Java classes in JavaDoc. If there are more things you don't understand, you can check out the [Module Details chapter](. /modules.html).
 
-## 理解名称  
+## Understand the name 
 
-PNX的API都尽量以见名知义的方式命名，看到一个函数或变量就立即可以大概知道它的作用。  
+PNX's APIs are named as much as possible by sight, so that when you see a function or variable you immediately know roughly what it does.
 
-比如有一个函数的名字是`getAndKillEntity`，我们就可以将这个函数的名字以大写字母来分割拆解为get、and、kill、entity
-四个单词，逐词翻译为 获取、并且、杀死、实体，连起来就是获取一个实体并把它杀死，这样就解读出了这个函数的作用。  
+For example, if the name of a function is `getAndKillEntity`, we can split the name of this function into get, and, kill, and entity in capital letters.
+Four words, translated word by word as get, and, kill, entity, linked together is to get an entity and kill it, so that the function's role can be deciphered.
 
-再比如有一个事件的名字为`PlayerJoinEvent`，拆解为 player、join、event，逐词翻译为 玩家 进入 事件，连起来
-就是玩家进服事件，那么你就可以知道这个事件会在玩家进入服务器的时候被触发了。  
+Another example is that there is an event named `PlayerJoinEvent`, which can be decomposed into player, join, event, and translated word by word as player enter event.
+is the player into the service event, then you can know that this event will be triggered when the player enters the server.
 
-> 关于事件的具体内容，我们会在以后的章节讲述，这里不必理解透彻  
+> We will talk about the details of the event in a later chapter, so we don't need to understand it thoroughly here.
 
-## MC中基本概念  
+## Basic concepts in MC 
 
-### 游戏刻  
+### Game Engraving 
 
-MC，包括PNX中，游戏是以游戏刻为单位运行的，每个游戏刻中PNX会完成一次整个游戏的运算。游戏刻又称GT或者tick。  
+In MC, including PNX, the game is run in game quarters, and the PNX completes the entire game once in each game quarter. Game quarters are also called GTs or ticks.
 
-tps（Tick per second）指每秒有多少游戏刻，通常情况下，服务器每秒为游戏执行20次游戏刻，即tps的值正常为20，这也意味着每个tick的时长为0.05秒，即50毫秒。
-但是，在服务器性能不足的情况下，服务器执行刻的时间会超过50毫秒。但下个游戏刻需要等到上个游戏刻执行完成后再开始执行，因此tps会下降，游戏中所有的内容都会被放慢速度，玩家也会感到卡顿。  
+tps (Tick per second) refers to how many game moments per second, normally, the server performs 20 game moments per second for the game, i.e. the value of tps is normally 20, which also means that the duration of each tick is 0.05 seconds, i.e. 50 milliseconds.
+However, in the case of insufficient server performance, the server will take more than 50 milliseconds to execute a tick. However, the next game tick needs to wait until the execution of the previous game tick is finished, so the tps will drop, all the content in the game will be slowed down, and the player will feel lag.
 
-### 实体  
+### Entity
 
-实体的完整类名是`cn.nukkit.entity.Entity`。
+The full class name for entities is `cn.nukkit.entity.Entity`.
 
-实体指一个游戏中可自由运动的独立单元，通常意义上包括载具（矿车、船等）、生物、玩家、掉落物、弹射物（箭、鸡蛋、雪球等）
-和经验球。  
+Entity refers to an independent unit in the game that is free to move, in the usual sense including vehicles (mine carts, boats, etc.), creatures, players, drops, projectiles (arrows, eggs, snowballs, etc.)
+and experience orbs.
 
-每个实体都具有自己的实体网络ID（数字ID），字符串ID，实体名称，血量，位置（坐标）和NBT，部分实体还具有物品栏和AI等。  
+Each entity has its own entity network ID (numeric ID), string ID, entity name, blood, location (coordinates) and NBT, and some entities also have item bars and AI, etc.
 
-每个实体每tick都会进行一次完整的运算处理，包括计算运动，坐标，AI和其他一些行为等。  
+Each entity performs a complete computational process every tick, including calculating movement, coordinates, AI and some other behaviors.
 
-### 物品  
+### Item 
 
-物品的完整类名是`cn.nukkit.item.Item`。  
+The full class name of the item is `cn.nukkit.item.Item`.
 
-物品指以物品堆形式存在的物品，通常指物品栏中（背包，箱子等）那种状态的物品，扔出去掉到地上的物品是掉落物实体而非
-我们这里说的物品。 
+Item means an item in the form of an item pile, usually an item in that state in the item bar (backpack, chest, etc.), and an item thrown out and dropped to the ground is a drop entity rather than
+We are talking about items here.
 
-每个物品都有自己的数字ID、字符串ID、数量和特殊值，部分物品具有NBT。数字ID已经不被推荐使用，请尽量使用字符串ID。  
+Each item has its own numeric ID, string ID, quantity and special value, some items have NBT. numeric ID is no longer recommended, please try to use string ID. 
 
-### 方块  
+### Block
 
-方块的完整类名是`cn.nukkit.block.Block`。  
+The full class name for a block is `cn.nukkit.block.Block`.
 
-方块指存在于世界中的，能够破坏、放置或使用的一个世界的组成部分。  
-物品栏中的方块是物品，掉落物形式的方块是实体。  
+A block refers to a component of a world that exists in the world and can be destroyed, placed, or used.  
+Blocks in the item bar are items, and blocks in the form of drops are entities.
 
-### 物品栏  
+### Inventory
 
-物品栏的完整类名是`cn.nukkit.inventory.Inventory`。  
+The full class name of an item bar is `cn.nukkit.inventory.Inventory`.
 
-物品栏是能够存放物品的虚拟容器，可以跟真实的容器方块关联，如箱子物品栏，熔炉物品栏等，也可以跟能够持有物品的
-实体关联，如玩家物品栏（背包空间）。  
+An item bar is a virtual container that can hold items, either associated with a real container cube, such as a chest item bar, a furnace item bar, etc., or with
+It can also be associated with an entity that can hold items, such as a player item bar (backpack space).
 
-### 世界  
+### World
 
-一个世界就是一个通常所说的地图或者存档，PNX自带多世界，一个服务器上最多可以有21亿个世界。  
+A world is a map or archive as it is usually called. PNX comes with multiple worlds, and there can be up to 2.1 billion worlds on a server.
 
-世界的完整的类名是`cn.nukkit.level.Level`。  
+The full class name of a world is `cn.nukkit.level.Level`.
 
-世界的概念与维度的概念不同，维度是世界的一种种类，每个世界都有一个维度属性，多个世界可能拥有完全相同的维度属性，
-同样地，每个维度属性可以对应多个世界。简而言之，一个PNX服务器中可以有多个主世界，下界或者末路之地。  
+The concept of world is different from the concept of dimension, which is a kind of world. Each world has a dimensional property, and multiple worlds may have exactly the same dimensional property.
+Similarly, each dimensional property can correspond to multiple worlds. In short, a PNX server can have multiple main worlds, lower worlds or endlands.
