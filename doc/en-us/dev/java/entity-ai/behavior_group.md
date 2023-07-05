@@ -10,7 +10,7 @@ In fact, the behavior group ```BehaviorGroup``` is not just a container for beha
 
 - Behavior, Core Behavior
 - Memory Storage
-- Sensors
+- Sensor
 - Pathfinder
 - Controller
 
@@ -24,7 +24,7 @@ By overriding the ```requireBehaviorGroup()``` method of the ```EntityIntelligen
 
 ### 1.0.2 Singularity
 
-For each organism, there is only one instance of the behavior group in its life cycle
+For each creature, there is only one instance of the behavior group in its life cycle
 
 ## 1.1 Create a new behavior group
 
