@@ -4,10 +4,7 @@ Events are one of the main ways plugins perform their work in PNX, and this sect
 
 ## What is an event  
 
-An event object is generated whenever a specific action occurs in the server. An event is a description of some behavior or action, such as a player logging in, a
-player leaves, player sends a message, and so on. Each kind of behavior or action has an event object as its abstraction, and the event object carries some key information about the behavior or action.
-The event object contains some key information about the behavior or action, e.g., the player object that sent the event, the message string sent, etc., and the player object contains the player's
-The player object contains the player's location, life value, item bar, etc.
+Whenever a specific action takes place in the server, an event object is generated. This object serves as a description of the behavior or action that occurred, such as a player logging in, a player leaving, or a player sending a message. Each type of behavior or action corresponds to an event object, which carries essential information related to that behavior or action. For instance, the event object may include details such as the player responsible for the event, the content of the message sent, and so on. Additionally, the player object encompasses various attributes, including the player's location, life value, item bar, and more.
 
 Plugins can register **listeners** with PNX to react to events as they occur. Each event object contains a description of the event, and usually the event listener is called before the event occurs.
 At this point the listener can prevent the event from actually happening by cancelling it, if no event listener cancels the event, then it will actually happen within the game.
@@ -21,7 +18,7 @@ The listener participates in the event process as shown in the following flow:
 
 ![PNX事件流程图](../../../image/js_tutorial/PNX事件流程图.svg)  
 
-PNX provides a very large number of events that you can use in the [Event Comparison Table](../../res/事件对照表.html) in the table. Each event in the table is labeled with the name of the category of the event.
+PNX provides a very large number of events that you can use in the [Event List](../res/event_list.html) in the table. Each event in the table is labeled with the name of the category of the event.
 You can use this class name in the plug-in to listen to this event, and click on the class name to go to the corresponding JavaDoc for more details.
 
 ## Register an event listener
