@@ -1,24 +1,24 @@
-# 第三章 传感器 - 实体的感官
+# Chapter 3 Sensors - The Senses of the Entity
 
 _**author: daoge_cmd**_
 
-**Waiting for translation, if you are interested in translation, welcome to contribute.**
+**The translation made by AzaleeX contributed to the PowerNukkitX documentation**
 
 
-## 1.0 从外界获取信息
+## 1.0 Obtaining information from the outside world
 
-“当你靠近一只羊时，它会看着你”
+"When you approach a sheep, it looks at you."
 
-思考上述行为流程，羊首先要发现附近存在的玩家，接着才会激活“看向最近玩家”行为。换句话说，实体必须具有从外界获取信息的能力
+Thinking about the above behavior flow, the sheep must first discover the presence of players nearby, and then activate the "look at the nearest player" behavior. In other words, the entity must have the ability to obtain information from the outside world
 
-### 1.0.1 使用传感器
+### 1.0.1 Use of sensors
 
-在未接触到传感器之前，你可能会在行为的评估器中编写检测附近玩家的逻辑来实现上面的功能。然而事实上我们不这么做，我们将这部分逻辑分离到了一个叫做传感器```Sensor```的组件上
+Before touching the sensor, you might write the logic for detecting nearby players in the evaluator of the behavior to implement the above functionality. However, in fact we don't do that, we separate this logic to a component called ``Sensor``
 
-传感器的接口描述如下:
+The sensor interface is described as follows.
 
 ![](../../../../image/entity-ai/69236b0c.png)
 
-```sense```方法中包含了传感器的主逻辑，例如上述获取最近玩家的逻辑就应该写在这个方法里面。获取到的信息应写入到实体的记忆存储器中（尽管并没有代码层面上的限制）
+```sense``` method contains the main logic of the sensor, e.g. the above logic for getting the nearest player should be written inside this method. The information obtained should be written to the entity's memory (although there are no code level restrictions)
 
-```getPeriod```方法决定了传感器多少gt被调用一次，默认为1（每gt都调用）。考虑到性能，可以适当拉大某些传感器的调用周期
+```getPeriod``` method determines how many gt the sensor is called once and defaults to 1 (called every gt). Considering performance, it may be appropriate to stretch the call period of some sensors

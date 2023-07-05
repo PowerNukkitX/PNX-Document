@@ -1,18 +1,18 @@
 # HelloWorld  
 
-本章中笔者将带您制作第一个js插件。  
+In this chapter, I will take you to create your first js plugin. 
 
-## 插件格式  
+## Plugin Format  
 
-一个JS插件即为一个在`plugins`文件夹中的以`@`为开头的文件夹中的内容。  
-每个JS插件都需要包含`plugin.yml`配置文件和至少一个`js`文件，也可以包含任意数量的任意文件和文件夹。  
-具体的格式说明可以在 [插件格式](../插件格式.html) 章节中查看。**强烈建议您仔细阅读插件格式章节**  
+A JS plugin is the contents of a folder starting with `@` in the `plugins` folder.  
+Each JS plugin needs to contain the `plugin.yml` configuration file and at least one `js` file, and can contain any number of arbitrary files and folders.  
+Specific formatting instructions can be found in the [plugin format](../插件格式.html) section. **It is highly recommended that you read the plugin format chapter carefully**
 
-## 创建plugin.yml  
+## Create plugin.yml
 
-> 再次提醒，`@dir`文件夹指代您创建的插件文件夹  
+> Again, the `@dir` folder refers to the plugin folder you created
 
-在`@dir`文件夹中创建`plugin.yml`配置文件，并在其中填写插件的基本信息。  
+Create the `plugin.yml` configuration file in the `@dir` folder and fill in the basic information of the plugin in it.
 
 ```yaml
 name: HelloWorld
@@ -20,13 +20,13 @@ main: index.js
 version: "1.0.0"
 api: ["1.0.13"]
 load: POSTWORLD
-author: 请把这行中的汉字替换为你的名字
-description: 第一个HelloWorld插件
+author: Please replace the characters in this line with your name
+description: The first HelloWorld plugin
 ```
 
-## 创建js文件  
+## Create js file  
 
-刚刚我们在`plugin.yml`中的`main`字段中指定了我们的js入口文件叫做`index.js`，现在我们在`@dir`文件夹中创建一个名为`index.js`的js文件。  
+We just specified our js entry file called `index.js` in the `main` field in `plugin.yml`, now we create a js file called `index.js` in the `@dir` folder.
 
 ```js
 console.log("Hello World")
@@ -40,16 +40,16 @@ export function close() {
 }
 ```
 
-上面的代码将会在服务端启动时、服务端开始初始化插件时，服务端关闭时分别在控制台以`INFO`、`WARN`、`ERROR`的方式输出`Hello World`。  
+The above code will output `Hello World` in the console as `INFO`, `WARN` and `ERROR` when the server starts, when the server starts initializing the plugin, and when the server is closed respectively.
 
-> PNX JS遵守ESM(EcmaScript Module)规范，因此您需要在编写时遵守ESM规范  
-> 需要被外部调用的函数应当加上`export`关键字  
-> 您可以在 [此处](https://zhuanlan.zhihu.com/p/400573436) 了解更多关于ESM的信息  
+> PNX JS adheres to the ESM (EcmaScript Module) specification, so you need to write in compliance with the ESM specification  
+> Functions that need to be called externally should include the `export` keyword  
+> You can find more information about ESM at [here](https://zhuanlan.zhihu.com/p/400573436)
 
-## 一些解释  
+## Some explanations  
 
-整个JS代码将在服务器刚启动时加载，请务必牢记：**大部分与游戏相关的内容，如监听事件，生成物品，操作地图，控制生物等等都不能在刚开始的时候进行！**  
+The entire JS code will be loaded when the server is first started, so be sure to keep in mind that **most game-related content such as listening for events, generating items, manipulating the map, controlling creatures, etc. cannot be done at the very beginning! **
 
-`export main`函数将会在PNX服务器初始化完成后被调用，此函数被调用时及以后您可以进行与游戏相关的操作。  
-`export close`函数将会在在PNX服务器关闭时或您的插件被卸载时调用，此时您应当进行一些清理收尾工作。  
+The `export main` function will be called after the PNX server has been initialized, and you can perform game-related operations when this function is called and thereafter.  
+The `export close` function will be called when the PNX server is shut down or when your plugin is uninstalled, when you should do some cleanup work.
 

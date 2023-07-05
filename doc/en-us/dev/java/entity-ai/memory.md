@@ -1,50 +1,50 @@
-# 第二章 记忆 - 实体的海马体
+# Chapter 2: Memory - The Hippocampus of the Entity
 
 _**author: daoge_cmd**_
 
-**Waiting for translation, if you are interested in translation, welcome to contribute.**  
+**The translation made by AzaleeX contributed to the PowerNukkitX documentation**
 
-## 1.0 记忆类型和记忆存储器
+## 1.0 Memory type and memory
 
-对于一个生物来说，不仅存在行为逻辑，在其生命周期中也具有一些实时数据。举个例子，对于羊来说，若其发现附近有手中拿着小麦的玩家并尝试移动过去，其“脑海”中就应该存储着对应此玩家的“记忆”。再比如说对于僵尸，其如果想要攻击最近的玩家，首先需要向“脑海”写入对应此玩家的记忆。这样子寻路器，攻击执行器，控制器等组件才能根据数据正常工作并实现目标行为
+For a creature, there is not only behavioral logic, but also some real-time data during its life cycle. For example, for a sheep, if it finds a player with wheat in its hand nearby and tries to move over, its "mind" should store the "memory" of the corresponding player. For example, for zombies, if they want to attack the nearest player, they first need to write the memory of the corresponding player to their "mind". This way the pathfinder, attack actuator, controller and other components can work properly according to the data and achieve the target behavior
 
-我们称上述的每个“数据”为一个记忆类型```MemoryType```。其中羊对应的记忆就是```NEAREST_FEEDING_PLAYER```（最近喂食玩家），僵尸对应的就是```ATTACK_TARGET```（仇恨目标）
+We call each of the above "data" a memory type```MemoryType```. One of the sheep corresponding to the memory is```NEAREST_FEEDING_PLAYER``` (recently fed to players), the zombie counterpart is```ATTACK_TARGET```(Hate target)
 
-"脑海"即记忆存储器```MemoryStorage```，其的概念比较好理解，每个实例化实体都拥有一个独立的记忆存储器，实体的所有记忆都保存在记忆存储器里面
+"The "mind" is the memory memory```MemoryStorage```，The concept is well understood, each instantiated entity has a separate memory, and all memories of the entity are stored in the memory
 
-### 1.0.1 创建一个新的记忆类型
+### 1.0.1 Create a new memory type
 
-MemoryType的可用构造函数如下: 
+The available constructors for MemoryType are as follows: 
 
 ![](../../../../image/entity-ai/22c4fc46.png)
 
-想要新建一个记忆，我们需要提供一个命名空间标识符```Identifier```以及记忆默认值（当尝试从存储器获取不存在的记忆的值时会返回默认值，可以是常量，也可以通过提供```Supplier<Data>```动态生成）
+To create a new memory, we need to provide a namespace identifier```Identifier```and memory defaults (default values are returned when attempting to retrieve the value of a non-existent memory from memory, either as constants or by providing```Supplier<Data>```(dynamically generated)
 
-命名空间标识符是每个记忆类型的“身份证”。PNX核心内部使用的命名空间是```minecraft:```，若你想在插件中增加新的记忆类型，请使用不同于```minecraft:```的命名空间避免重复
+The namespace identifier is the "identity card" for each memory type, and the namespace used internally by the PNX core is```minecraft:```，If you want to add a new memory type to the plug-in, please use a different type than```minecraft:```namespace to avoid duplication
 
-核心使用到的所有记忆类型保存在接口```cn.nukkit.entity.ai.memory.CoreMemoryTypes```
+All memory types used by the core are stored in the interface```cn.nukkit.entity.ai.memory.CoreMemoryTypes```
 
-## 1.1.0 通用性
+## 1.1.0 Universality
 
-对于不同实体使用到的含义相同的属性（例如仇恨目标），我们应尽量让他们使用相同的记忆类型。这样子，如果我们想让僵尸去攻击苦力怕，我们就可以将他们的”仇恨目标“分别设置为对方。
+For attributes that have the same meaning (e.g. hate target) used by different entities, we should try to make them use the same memory type. This way, if we want the zombies to attack the bitter enemies, we can set their "hate targets" to each other.
 
-### 1.1.1 连接不同组件
+### 1.1.1 Connecting different components
 
-事实上，记忆存储器不仅为行为提供信息，它还在组件间发挥了桥梁作用。例如默认的几个运动控制器就通过读取```MOVE_DIRECTION_START```、```MOVE_DIRECTION_END```等记忆移动实体，寻路器通过读取```MOVE_TARGET```计算路径。
+In fact, memory not only provides information for behavior, it also acts as a bridge between components. Several motion controllers by default, for example, do this by reading```MOVE_DIRECTION_START```、```MOVE_DIRECTION_END```and other memory moving entities, the pathfinder moves by reading```MOVE_TARGET```Calculate the path.
 
-通过记忆存储器，不同的简单组件被无缝衔接到了一起，实现了实体的复杂行为
+Through memory storage, different simple components are seamlessly linked together, enabling complex behavior of entities
 
-## 1.2.0 作为属性保存还是作为记忆保存？
+## 1.2.0 Saved as an attribute or saved as a memory ?
 
-对于实体的数据（生命值，攻击伤害，仇恨目标，愤怒状态等），你可以选择将其作为属性直接保存在实体类上，并用接口抽象它的```getter/setter```。你也可以选择将其作为memory保存在实体记忆中。那是不是应该将所有数据都保存进memory呢？
+For entity data (life value, attack damage, hate target, rage status, etc.), you can choose to store it directly on the entity class as an attribute and abstract it with the interface```getter/setter```. You can also choose to keep it in the entity memory as MEMORY. Shouldn't all data be saved into memory then ?
 
-看完上述内容，你也许会认为应该都存入到memory中，然而这样并不一定好。
+After reading the above, you may think that it should all be stored in memory, however, this is not necessarily good.
 
-对于**实体基础属性**，例如血量，生命值，攻击伤害等，我们规定应将其保存为实体类的属性并使用接口抽象
+For **entity base properties**, such as blood, life, attack damage, etc., we specify that they should be saved as properties of the entity class and abstracted using the interface
 
-对于**实体运行时属性**，例如warden的愤怒值，实体寻路目标，仇恨目标等，我们规定应将其保存进memory
+For **entity runtime properties**, such as warden's rage value, entity pathfinding target, hate target, etc., we specify that they should be saved into memory
 
-若你依然无法正确区分，我们还有个简单的判断方法，即观察属性是否应在实体生命周期结束（简单说就是close()掉了）后被保存。若应被保存，你就应该将其保存为实体类的属性而不是memory
+If you still can't tell the difference correctly, we have a simple way to determine if the property should be saved after the entity lifecycle has ended (simply put, close() dropped). If it should be saved, you should save it as a property of the entity class instead of memory
 
 
 

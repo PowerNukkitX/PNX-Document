@@ -1,66 +1,66 @@
-# 第五章 寻路器 - 实体的大脑
+# Chapter 5 Pathfinder - The brain of an entity
 
 ***author: daoge_cmd***
 
-**Waiting for translation, if you are interested in translation, welcome to contribute.**
+**The translation made by AzaleeX contributed to the PowerNukkitX documentation**
 
 
-## 1.0 计算路径
+## 1.0 Calculation path
 
-寻路器负责为实体计算路径
+The pathfinder is responsible for calculating the path for the entity
 
-对于每个实体，必须提供寻路器的实现
+For each entity, the pathfinder implementation must be provided
 
-## 1.1.0 开始使用：为实体使用适合的寻路器
+## 1.1.0 Getting Started: Using the right pathfinder for the entity
 
-框架提供了两种寻路器实现，分别是：
+The framework provides two pathfinder implementations, namely:
 
 - SimpleFlatAStarRouteFinder
 - SimpleSpaceAStarRouteFinder
 
-其中前者适用于陆地行走生物，后者适用于飞行/水下生物
+The former applies to land walking creatures and the latter to flying/submerged creatures
 
-具体区别是前者为2D A\*实现，后者是3D A\*实现
+The specific difference is that the former is a 2D A\* implementation and the latter is a 3D A\* implementation
 
-### 1.1.1 寻路点评估器
+### 1.1.1 Waypoint Evaluator
 
-选择好了寻路器实现，接下来我们还需要提供一个寻路点评估器
+After choosing a pathfinder implementation, we next need to provide a pathfinder point evaluator
 
-寻路点评估器决定了一个坐标点是否能作为有效路径点（注：路径点即实体移动到此点时脚的位置）
+The pathfinding point evaluator determines whether a coordinate point can be used as a valid path point (note: the path point is the position of the foot when the entity moves to this point)
 
-通过提供特定的评估器，我们可以自定义寻路逻辑。例如我们可以让鱼只能在岩浆里游（笑）
+By providing specific evaluators, we can customize the pathfinding logic. For example, we can make fish swim only in lava (laughs)
 
-寻路点评估器接口如下：
+The seek point evaluator interface is as follows:
 
 ![image-20221215153546254](https://s2.loli.net/2022/12/15/5s3VWnGor7OK6pe.png)
 
-请注意，**并不是两个方法都需要重写**，方法描述具体如下：
+Please note that **not both methods need to be overridden**, the method descriptions are specified as follows
 
 ```evalStandingBlock()```：
 
 ```
-返回此方块是否可以作为脚下站立的方块，通常用于返回整数坐标点（行走）的实体
-如果此使用此评估器的寻路器只返回整数坐标点，才需要实现此方块。
+Returns whether this square can be used as a standing square underfoot, usually used for entities that return integer coordinate points (walking)
+This square needs to be implemented only if this pathfinder using this evaluator returns only integer coordinate points.
 ```
 
 ```evalPos()```:
 
 ```
-返回目标坐标是否可以作为路径点，通常用于返回非整数坐标点（飞行和游泳）的实体
-如果此使用此评估器的寻路器返回非整数坐标点，才需要实现此方法。
+Returns whether the target coordinates are available as path points, usually used for entities that return non-integer coordinate points (flying and swimming)
+This method needs to be implemented only if the pathfinder using this evaluator returns non-integer coordinate points.
 ```
 
-简单说就是：
+Simply put:
 
-若此评估器是传给```SimpleFlatAStarRouteFinder```用的，只需要重写```evalStandingBlock()```方法，传入的方块为路径点垂直往下一格的方块
+If this evaluator is passed to the ```SimpleFlatAStarRouteFinder```, just override the ```evalStandingBlock()``` method and pass in the square that is vertically one square down from the path point
 
-若此评估器是传给```SimpleSpaceAStarRouteFinder```用的，只需要重写```evalPos()```方法，传入的坐标直接就是路径点
+If this evaluator is passed to ```SimpleSpaceAStarRouteFinder```, just override the ```evalPos()``` method and pass in the coordinates directly to the path point
 
-## 1.2 操作寻路器
+## 1.2 Operating the pathfinder
 
-我们不需要直接操作寻路器计算路径。与控制器类似的，寻路器也通过读取memory完成工作
+We do not need to operate the pathfinder directly to calculate the path. Similar to the controller, the pathfinder does its job by reading the memory
 
-当然，考虑到操作寻路器应该是高频操作，```EntityIntelligent```类下有封装好的方法供你直接使用：
+Of course, considering that operating the pathfinder should be a high-frequency operation, there are wrapped methods under the ```EntityIntelligent``` class for you to use directly:
 
 ```java
 public Vector3 getMoveTarget() {
@@ -72,25 +72,25 @@ public void setMoveTarget(Vector3 moveTarget) {
 }
 ```
 
-设置完```moveTarget```后，寻路器会在接下来的几个gt计算新的路径并输出结果。若你注册了运动控制器```WalkController```/```SpaceMoveController```，则其将会读入数据并移动实体通过计算出来的路径到```moveTarget```
+After setting the ```moveTarget```, the pathfinder will calculate the new path and output the result in the next few gt. If you have registered the motion controller ```WalkController```/```SpaceMoveController```, it will read in the data and move the entity through the calculated path to the ```moveTarget```.
 
-若设置```moveTarget```为```null```，相当于清除了移动目标，实体将会停止移动（即使已经计算出路径）
+If ```moveTarget``` is set to ```null```, this is equivalent to clearing the move target and the entity will stop moving (even if the path has been calculated)
 
-### 1.2.1 路径更新周期
+### 1.2.1 Path update cycle
 
-在```moveTarget```非空的情况下，寻路器会每隔几个gt重新计算一次路径（周期与实体是否为热点实体以及世界整体卡顿程度有关）。
+In the case that ```moveTarget``` is not empty, the pathfinder will recalculate the path every few gt (the period is related to whether the entity is a hot entity and the overall jamming level of the world).
 
-具体计算公式为：
+The specific calculation formula is:
 
 ```java
 var period = ROUTE_UPDATE_CYCLE + (entity.level.tickRateOptDelay << 1);
 if(!entity.isActive()) period = period << 2;
 ```
 
-### 1.2.2 强制立即更新路径
+### 1.2.2 Force immediate path update
 
-尽管不推荐，但是确实在某些情况我们需要路径立即被更新
+Although not recommended, there are situations where we do need the route to be updated immediately
 
-你可以通过调用```IBehaviorGroup.setForceUpdateRoute(boolean)```达到这个目的
+You can achieve this by calling ```IBehaviorGroup.setForceUpdateRoute(boolean)```.
 
-但是请注意，过量使用此方法将会失去寻路调度器性能优化的好处，并导致性能下降
+Note, however, that overusing this method will lose the benefits of the pathfinding scheduler performance optimization and lead to performance degradation
