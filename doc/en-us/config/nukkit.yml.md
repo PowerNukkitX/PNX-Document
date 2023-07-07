@@ -31,13 +31,14 @@ Nukkit server language
  ## deprecated-verbose: true
  When the plugin uses an API that is not recommended, a prompt is displayed on the console (false turns off true turns on)
  ## async-workers: auto　
- ### safe-spawn: true
+ ## safe-spawn: true
  Number of threads working asynchronously
  If set to auto, the server will try to detect the number of cores of the CPU (at least 4)
-
-## waterdogpe:
-Whether to open WaterdogPE compatible, after opening it will be compatible with the use_login_extras configuration item in WaterDog, and at the same time turn off the PNX addon api and login timestamp verify.  
-The default value is` false`
+ ## waterdogpe:
+ Whether to open WaterdogPE compatible, after opening it will be compatible with the use_login_extras configuration item in WaterDog, and at the same time turn off the PNX addon api and login timestamp verify.  
+ The default value is` false`
+ ## download-spark: true
+ whether to download and enable spark
 
 ## network:
 Network related settings
@@ -54,15 +55,16 @@ debugRelated settings
  - ignored-packets:
    - LevelChunkPacket
 
-## timings:
-Find the cause of server seizure
-- enabled: false
-- verbose: false
-- history-interval: 6000
-- history-length: 72000
-- bypass-max: false
-- privacy: false
-- ignore: []
+## ~~timings:~~
+~~Find the cause of server seizure~~
+Replaced by spark in 1.20.0-r3
+- ~~enabled: false~~
+- ~~verbose: false~~
+- ~~history-interval: 6000~~
+- ~~history-length: 72000~~
+- ~~bypass-max: false~~
+- ~~privacy: false~~
+- ~~ignore: []~~
 
 ## level-settings:
 Map Settings
