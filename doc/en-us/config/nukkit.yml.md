@@ -30,10 +30,11 @@ Nukkit server language
  Whether to allow the plugin of the server to be listed through Query (false is turned off and true is turned on)
  ## deprecated-verbose: true
  When the plugin uses an API that is not recommended, a prompt is displayed on the console (false turns off true turns on)
- ## async-workers: auto　
- ## safe-spawn: true
+ ## async-workers: auto
  Number of threads working asynchronously
  If set to auto, the server will try to detect the number of cores of the CPU (at least 4)
+ ## safe-spawn: true
+ Teleport players to a safe spawn point when they join the server (Prevent players from spawning underwater or inside blocks.)
  ## waterdogpe:
  Whether to open WaterdogPE compatible, after opening it will be compatible with the use_login_extras configuration item in WaterDog, and at the same time turn off the PNX addon api and login timestamp verify.  
  The default value is` false`

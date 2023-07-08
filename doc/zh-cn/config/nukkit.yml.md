@@ -30,10 +30,11 @@ Nukkit服务器语言
  是否允许通过Query查询列出服务器的插件(false 关闭 true 开启)
  ## deprecated-verbose: true
  当插件使用不推荐的API时，在控制台显示提示(false 关闭 true 开启)
- ## async-workers: auto　
- ## safe-spawn: true
+ ## async-workers: auto
  异步工作的线程数量
  如果设置为auto，服务器将尝试检测CPU的核心数量（至少4个）
+ ## safe-spawn: true
+ 玩家进入服务器时传送到安全的出生点（避免出生在水下方块内等情况）
  ## waterdogpe: false
  是否开启WaterdogPE兼容，开启后会兼容WaterDog中的use_login_extras配置项，同时关闭PNX自定义功能及登陆时间戳检测，默认为`false`
  ## download-spark: true
