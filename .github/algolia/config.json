@@ -1,7 +1,8 @@
 {
   "index_name": "pnx_doc",
   "start_urls": [
-    "https://www.powernukkitx.com/doc/index.html"
+    "https://pnx.nullatom.com/doc/zh-cn/PowerNukkitX.html",
+    "https://pnx.nullatom.com/doc/en-us/PowerNukkitX.html"
   ],
   "scrape_start_urls": false,
   "selectors_exclude": [
