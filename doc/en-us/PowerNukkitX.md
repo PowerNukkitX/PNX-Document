@@ -4,12 +4,12 @@
 
 <h3 style="width: fit-content;" class="mdui-center">High-performance, more-feature, highly extensible server software</h2>  
 
-[![Discord](https://img.shields.io/discord/944227466912870410?style=flat-square)](https://discord.gg/j7UwsaNu4V)
-[![简体中文](https://img.shields.io/badge/简体中文-100%25-green?style=flat-square)](https://github.com/BlocklyNukkit/PowerNukkitX/blob/master/README.md)
-[![English](https://img.shields.io/badge/English-30%25-yellow?style=flat-square)](https://github.com/BlocklyNukkit/PowerNukkitX/blob/master/blob/en-us/README.md)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square)](https://github.com/BlocklyNukkit/PowerNukkitX/blob/master/LICENSE)
-[![ChangeLog](https://img.shields.io/badge/更新日志-blue?style=flat-square)](https://github.com/BlocklyNukkit/PowerNukkitX/blob/master/CHANGELOG.md)
-[![FAQ](https://img.shields.io/badge/FAQ-blue?style=flat-square)](https://github.com/BlocklyNukkit/PowerNukkitX/wiki/FAQ)
+[![Discord](https://img.shields.io/discord/944227466912870410?color=7289da&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/BcPhZCVJHJ)
+[![English](https://img.shields.io/badge/English-Click%20me-purple?style=flat-square)](https://www.powernukkitx.com/doc/en-us/PowerNukkitX.html)
+[![简体中文](https://img.shields.io/badge/简体中文-Click%20me-purple?style=flat-square)](https://powernukkitx.com/doc/zh-cn/PowerNukkitX.html)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square)](https://github.com/PowerNukkitX/PowerNukkitX/blob/master/LICENSE)
+[![ChangeLog](https://img.shields.io/badge/ChangeLog-blue?style=flat-square)](https://github.com/PowerNukkitX/PowerNukkitX/blob/master/CHANGELOG.md)
+[![FAQ](https://img.shields.io/badge/FAQ-blue?style=flat-square)](https://www.powernukkitx.com/doc/en-us/faq/common.html)
 
 -----  
 
@@ -46,6 +46,6 @@ As the main force of the Nukkit ecology, we need to take over the task of the Nu
 
 ## Connect us  
 
-- Discord：[https://discord.gg/j7UwsaNu4V](https://discord.gg/j7UwsaNu4V)
-- BlocklyNukkit QQ group：953752196
+- Discord：[https://discord.gg/BcPhZCVJHJ](https://discord.gg/BcPhZCVJHJ)
+- QQ group：[639808269](https://jq.qq.com/?_wv=1027&k=6rm3gbUI)
 - Website：[https://www.powernukkitx.cn](https://www.powernukkitx.cn)

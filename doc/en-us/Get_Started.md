@@ -45,9 +45,9 @@ Notice that in the path **Cannot have spaces**！ Otherwise, the CLI cannot norm
 
 ## Advanced Usage of Command Line Tools
 
-- see [PNX-CLI Tutorial](./faq/PNX-CLI_Launcher_Tutorial_for_Beginners.md)
+- see [PNX-CLI Tutorial](./faq/PNX-CLI.html)
 
 ## Configure your PNX server
 
-- see [Server.propertiesConfiguration Introduction](./faq/Server.propertiesIntroduction to Configuration.html)
-- see [Nukkit.ymlConfiguration Introduction](./faq/Nukkit.ymlIntroduction to Configuration.html)
+- see [Server.propertiesConfiguration Introduction](./config/server.properties.html)
+- see [Nukkit.ymlConfiguration Introduction](./config/nukkit.yml.html)

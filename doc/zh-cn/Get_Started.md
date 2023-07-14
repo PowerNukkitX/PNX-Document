@@ -45,9 +45,9 @@
 
 ## 命令行工具高级用法
 
-- 参阅[PNX-CLI启动器新手教学](./faq/PNX-CLI启动器新手教学.html)  
+- 参阅[PNX-CLI启动器新手教学](./faq/PNX-CLI.html)  
 
 ## 配置您的PNX服务器  
 
-- 参阅[Server.properties配置介绍](./config/Server.properties配置介绍.html)
-- 参阅[Nukkit.yml配置介绍](./config/Nukkit.yml配置介绍.html)
+- 参阅[Server.properties配置介绍](./config/server.properties.html)
+- 参阅[Nukkit.yml配置介绍](./config/nukkit.yml.html)
