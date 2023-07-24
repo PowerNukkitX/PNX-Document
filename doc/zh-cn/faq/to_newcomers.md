@@ -15,7 +15,7 @@
 
 ## PNX支持什么版本？  
 
-Minecraft: Bedrock Edition v1.20.0 (Protocol 589)  
+Minecraft: Bedrock Edition v1.20.10 (Protocol 594)  
 
 ## PNX原版特性支持如何？  
 
