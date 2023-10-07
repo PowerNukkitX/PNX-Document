@@ -36,24 +36,24 @@ public class MySword extends ItemCustomTool {
     public CustomItemDefinition getDefinition() {
         return CustomItemDefinition
                 .toolBuilder(this, ItemCreativeCategory.EQUIPMENT)
-                .allowOffHand(true)//允许副手使用
-                .handEquipped(true)//决定了物品的手持方式
-                .foil(true)//物品带有附魔效果
+                .allowOffHand(true) // Set to true to make the item be able to be held in the off hand
+                .handEquipped(true) // Set to true to make the item be able to be held in the hand
+                .foil(true) // Set to true to make the item shiny
                 .build();
     }
-    public int getMaxDurability() {//定义最大耐久
+    public int getMaxDurability() {
         return 1000;
     }
-    public int getTier() {//定义工具等级
+    public int getTier() {
         return ItemSwordDiamond.TIER_DIAMOND;
     }
-    public int getAttackDamage() {//定义攻击伤害
+    public int getAttackDamage() {
         return 30;
     }
-    public int getEnchantAbility() {//定义附魔能力
+    public int getEnchantAbility() {
         return 20;
     }
-    public boolean isSword() {//种类剑
+    public boolean isSword() {
         return true;
     }
 }
