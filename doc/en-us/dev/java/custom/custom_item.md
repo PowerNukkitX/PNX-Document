@@ -1,19 +1,19 @@
-# 2.自定义物品相关API  
+# 2. API for custom items
 
-_**author: Cool_Loong**_  
-自定义物品相关的API统一在包`cn.nukkit.item.customitem`下  
-实现自定义物品需要实现CustomItem接口，也可以通过选择继承内部已经实现好接口的一些基础自定义物品类来实现。
+_**author: Verox**_  
+API related to custom items is unified in the package `cn.nukkit.item.customitem`
+To implement a custom item, you need to implement the CustomItem interface, or you can implement it by extending some basic custom item class that has already implemented the interface internally (Like `ItemCustomTool` or `ItemCustom`).
 
-## 基础自定义物品
-通过继承`ItemCustom`类可以实现一个普通的自定义物品，必须要覆写`getDefinition`方法,创建一个无参构造函数，调用父类构造函数传入:  
-`String id`  
-id是自定义物品的标识符，必须填写，形如`pnx:test`
-`String name`  
-name是自定义物品显示的名称，可以为空，当为空时，自定义物品会从资源包中的`texts`文件夹下的语言文件中读取多语言文本，形如`item.pnx:test=Test Item`
-`String textureName`  
-textureName是自定义物品的材质路径，必须填写，需要根据资源包中`textures\item_texture.json`相应的材质定义来填写
+## Basic custom item
+You can implement a normal custom item by extending the `ItemCustom` class. You must override the `getDefinition` method and create a parameterless constructor, call the parent class constructor and pass in:
+`String id`
+`id` is the identifier of the custom item, which must be filled in, such as `pnx:test`
+`String name`
+`name` is the name displayed by the custom item, which can be left `null`. When it is `null`, the custom item will read the multilingual text from the language file in the `texts` folder of the resource pack, such as `item.pnx:test=Test Item`
+`String textureName`
+`textureName` is the texture path of the custom item, which must be filled in. You need to fill in according to the corresponding texture definition of `textures\item_texture.json` in the resource pack
 
-示例：
+Example:
 ```java
 public class Test extends ItemCustom {
     public Test() {
@@ -24,10 +24,10 @@ public class Test extends ItemCustom {
     }
 }
 ```
-## 基础自定义工具
-通过继承`ItemCustomTool`类可以实现一个普通的自定义工具，实现方式和上面类似。注意`CustomItemDefinition`需要使用`toolBuilder`，因为有特殊的接口。  
+## Basic custom tool
+You can implement a custom tool by extending the `ItemCustomTool` class. The implementation method is similar to the above. Note that `CustomItemDefinition` needs to use `toolBuilder` instead of `simpleBuilder` because it has a special interface.
 
-示例：
+Example:
 ```java
 public class MySword extends ItemCustomTool {
     public MySword() {
@@ -36,32 +36,32 @@ public class MySword extends ItemCustomTool {
     public CustomItemDefinition getDefinition() {
         return CustomItemDefinition
                 .toolBuilder(this, ItemCreativeCategory.EQUIPMENT)
-                .allowOffHand(true)//允许副手使用
-                .handEquipped(true)//决定了物品的手持方式
-                .foil(true)//物品带有附魔效果
+                .allowOffHand(true) // Set to true to make the item be able to be held in the off hand
+                .handEquipped(true) // Set to true to make the item be able to be held in the hand
+                .foil(true) // Set to true to make the item shiny
                 .build();
     }
-    public int getMaxDurability() {//定义最大耐久
+    public int getMaxDurability() {
         return 1000;
     }
-    public int getTier() {//定义工具等级
+    public int getTier() {
         return ItemSwordDiamond.TIER_DIAMOND;
     }
-    public int getAttackDamage() {//定义攻击伤害
+    public int getAttackDamage() {
         return 30;
     }
-    public int getEnchantAbility() {//定义附魔能力
+    public int getEnchantAbility() {
         return 20;
     }
-    public boolean isSword() {//种类剑
+    public boolean isSword() {
         return true;
     }
 }
 ```
-## 基础自定义盔甲
-通过继承`ItemCustomArmor`类可以实现一个普通的自定义盔甲。注意`CustomItemDefinition`需要使用`armorBuilder`，因为有特殊的接口。  
-同时，自定义盔甲需要在材质包中指定`Attachables`。  
-示例：
+## Basic custom armor
+You can implement a custom armor by extending the `ItemCustomArmor` class. The implementation method is similar to the above. Note that `CustomItemDefinition` needs to use `armorBuilder` instead of `simpleBuilder` because it has a special interface.
+At the same time, the custom armor needs to specify `Attachables` in the texture pack.
+Example:
 ```java
 public class MyArmor extends ItemCustomArmor {
     public MyArmor() {
@@ -91,11 +91,12 @@ public class MyArmor extends ItemCustomArmor {
     }
 }
 ```
-## 基础自定义食物
-通过继承`ItemCustomEdible`类可以实现一个普通的自定义工具。注意`CustomItemDefinition`需要使用`edibleBuilder`，因为有特殊的接口。
-同时`ItemCustomEdible`还必须实现方法`public abstract Map.Entry<Plugin, Food> getFood();`来定义食物属性，以供服务端注册食物`Food`
+## Basic custom edible item
+You can implement a custom edible item by extending the `ItemCustomEdible` class. The implementation method is similar to the above. Note that `CustomItemDefinition` needs to use `edibleBuilder` instead of `simpleBuilder` because it has a special interface.
+At the same time, `ItemCustomEdible` must implement the method `public abstract Map.Entry<Plugin, Food> getFood();` to define the food attributes for the server to register food `Food`
+Always make sure that the provided plugin is the plugin that registers the food. Otherwise, exception may occur during runtime.
 
-示例：
+Example:
 ```java
 public class MyApple extends ItemCustomEdible {
     public MyApple() {
@@ -109,29 +110,29 @@ public class MyApple extends ItemCustomEdible {
     }
 }
 ```
-## 继承自任意物品类实现自定义物品
-通过继承自任意物品类实现`CustomItem`可以复用核心内部逻辑，实现某些特殊物品，例如自定义弓。  
-需要注意的是，实现`CustomItem`接口实现自定义物品，必须拥有一个无参构造函数，且按照以下示例定义。同时CustomItemDefinition必须使用`customBuilder`。  
+## Custom item with custom behavior
+You can implement a custom item with custom behavior by extending the `Item` class. The implementation method is similar to the above. Note that `CustomItemDefinition` needs to use `customBuilder` instead of `simpleBuilder` because it has a special interface.
+At the same time, the custom item needs to implement the `CustomItem` interface.
 
-示例:
+Example:
 ```java
 public class MyCustomItem extends Item implements CustomItem {
     /**
-     * 参数1：物品id必须为255即字符串物品ID
-     * 参数2：默认meta值为0
-     * 参数3：物品数量为1
-     * 参数4：物品的名称，如果为null使用资源包中的多语言文本
+     * Argument 1: Item ID is 255, that is, the string item ID
+     * Argument 2: Item meta is 0 by default
+     * Argument 3: Item count is 1 by default
+     * Argument 4: Item name
      */
     public MyCustomItem() {
         super(ItemID.STRING_IDENTIFIED_ITEM, 0, 1, "test");
     }
-    public String getTextureName() {//材质
+    public String getTextureName() {
         return "test";
     }
-    public String getNamespaceId() {//物品标识符
+    public String getNamespaceId() {
         return "pnx:test";
     }
-    public CustomItemDefinition getDefinition() {//物品定义
+    public CustomItemDefinition getDefinition() {
         return CustomItemDefinition.customBuilder(this,ItemCreativeCategory.EQUIPMENT).build();
     }
 }
@@ -139,4 +140,4 @@ public class MyCustomItem extends Item implements CustomItem {
 
 ---------
 
-CustomItemDefinition相关API参见[JavaDoc](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/item/customitem/CustomItemDefinition.html)
+CustomItemDefinition related API see [JavaDoc](https://javadoc.io/doc/cn.powernukkitx/powernukkitx/latest/cn/nukkit/item/customitem/CustomItemDefinition.html)
